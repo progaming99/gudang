@@ -111,8 +111,12 @@ class Admin_model extends CI_Model
 		}
 
 		if ($start_date != null) {
-			$this->db->where('barang_masuk.tanggal_masuk >=', $start_date);
-			$this->db->where('barang_masuk.tanggal_masuk <=', $end_date);
+			if ($start_date == $end_date) {
+				$this->db->where('barang_masuk.tanggal_masuk', $start_date);
+			} else {
+				$this->db->where('barang_masuk.tanggal_masuk >=', $start_date);
+				$this->db->where('barang_masuk.tanggal_masuk <=', $end_date);
+			}
 		}
 
 		$this->db->order_by('barang_masuk.id_barang_masuk', 'DESC');
