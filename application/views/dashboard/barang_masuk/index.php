@@ -21,16 +21,24 @@
 	</div>
 
 	<!-- Filter Tanggal -->
-	<div class="row p-3 align-items-center">
+	<div class="row p-3">
 		<div class="col-md-3">
 			<div class="form-group">
-				<label for="daterange">Filter Rentang Tanggal:</label>
-				<input type="text" id="daterange" name="daterange" class="form-control" />
+				<label for="startDate">Start Date:</label>
+				<input type="date" id="startDate" name="startDate" class="form-control" value="<?= $this->input->get('start_date') ?? date('Y-m-d'); ?>" />
 			</div>
 		</div>
-		<div class="col-md-3 mt-2 mt-md-0">
-			<!-- <button id="filter_button" class="btn btn-success">Filter</button> -->
-			<button onclick="resetFilter()" class="btn btn-secondary">Reset</button>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="endDate">End Date:</label>
+				<input type="date" id="endDate" name="endDate" class="form-control" value="<?= $this->input->get('end_date') ?? date('Y-m-d'); ?>" />
+			</div>
+		</div>
+		<div class="col-md-3 d-flex align-items-end">
+			<div class="form-group">
+				<button onclick="filter()" class="btn btn-success">Filter</button>
+				<button onclick="resetFilter()" class="btn btn-secondary">Reset</button>
+			</div>
 		</div>
 	</div>
 
@@ -106,106 +114,16 @@
 
 
 <script>
-	function resetFilter() {
-		window.location.href = "Barangmasuk";
+	function filter() {
+		const startDate = $("#startDate").val();
+		const endDate = $("#endDate").val();
+
+		window.location.href = `Barangmasuk?start_date=${startDate}&end_date=${endDate}`;
 	}
 
-	$(function() {
-		$('input[name="daterange"]').daterangepicker({
-			opens: 'left',
-			locale: {
-				format: 'DD-MM-YYYY'
-			}
-		}, function(start, end, label) {
-			// console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-			const startDate = start.format('YYYY-MM-DD');
-			const endDate = end.format('YYYY-MM-DD');
-			window.location.href = `Barangmasuk?start_date=${startDate}&end_date=${endDate}`;
-
-		});
-	});
-</script>
-
-<!-- JavaScript untuk filter tanggal -->
-<script>
-	$(document).ready(function() {
-
-		// // Inisialisasi date range picker
-		// $('#date_range').daterangepicker({
-		// 	autoUpdateInput: false,
-		// 	locale: {
-		// 		cancelLabel: 'Bersihkan',
-		// 	},
-		// });
-
-
-		// // Tangani peristiwa pemilihan rentang tanggal
-		// $('#date_range__').on('apply.daterangepicker', function(ev, picker) {
-		// 	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format(
-		// 		'DD/MM/YYYY'));
-
-		// 	var startDate = picker.startDate.format('YYYY-MM-DD');
-		// 	var endDate = picker.endDate.format('YYYY-MM-DD');
-
-		// 	// Kirim data filter ke server menggunakan AJAX
-		// 	$.ajax({
-		// 		url: 'Barangmasuk/filter', // Sesuaikan URL dengan URL controller Anda
-		// 		type: 'GET',
-		// 		data: {
-		// 			start_date: startDate,
-		// 			end_date: endDate
-		// 		},
-		// 		success: function(data) {
-		// 			// Hapus data yang ada di tabel sebelum memasukkan data yang baru
-		// 			$('#dataTable tbody').empty();
-
-		// 			// Iterasi melalui data yang diterima dari server
-		// 			$.each(data, function(index, item) {
-		// 				// Tambahkan baris baru ke tabel dengan data yang difilter
-		// 				var newRow = '<tr>' +
-		// 					'<td>' + (index + 1) + '</td>' +
-		// 					'<td>' + item.id_barang_masuk + '</td>' +
-		// 					'<td>' + item.tanggal_masuk + '</td>' +
-		// 					'<td>' + item.nama_supplier + '</td>' +
-		// 					'<td>' + item.nama_barang + '</td>' +
-		// 					'<td>' + item.jumlah_masuk + ' ' + item.nama_satuan +
-		// 					'</td>' +
-		// 					'<td>' + item.total_harga + '</td>' +
-		// 					'<td>' + item.nama + '</td>' +
-		// 					'</tr>';
-
-		// 				// Tambahkan baris ke tabel
-		// 				$('#dataTable tbody').append(newRow);
-		// 			});
-		// 		},
-		// 		error: function(xhr, textStatus, errorThrown) {
-		// 			// Tangani kesalahan jika terjadi
-		// 			console.error('Kesalahan saat mengirim permintaan AJAX: ' + errorThrown);
-		// 		}
-		// 	});
-		// });
-
-		// Tangani tombol bersihkan filter
-		$('#clear_button').on('click', function() {
-			$('#date_range').val('');
-
-			// Muat ulang data tanpa filter menggunakan AJAX
-			$.ajax({
-				url: 'Barangmasuk/index', // Sesuaikan URL dengan URL controller Anda
-				type: 'GET',
-				success: function(data) {
-					// Di sini Anda dapat memperbarui tabel dengan data tanpa filter
-					// Misalnya, Anda dapat mengganti isi tabel dengan data yang baru
-					// atau melakukan manipulasi lainnya sesuai kebutuhan Anda.
-					// Contoh: $('#dataTable').html(data);
-				},
-				error: function(xhr, textStatus, errorThrown) {
-					// Tangani kesalahan jika terjadi
-					console.error('Kesalahan saat mengirim permintaan AJAX: ' + errorThrown);
-				}
-			});
-		});
-	});
+	function resetFilter() {
+		window.location.href = 'Barangmasuk'
+	}
 </script>
 
 <script>
