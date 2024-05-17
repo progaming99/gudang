@@ -149,15 +149,6 @@ class Ban extends CI_Controller
         redirect('Ban');
     }
 
-    public function print($id)
-    {
-        // $data['ban'] = $this->admin->get('ban')->result();
-        // $data['ban'] = $this->admin->get('ban');
-        $data['ban'] = $this->admin->getBanId($id);
-
-        $this->load->view('dashboard/ban/print', $data);
-    }
-
     public function getstok($getId)
     {
         $id = encode_php_tags($getId);

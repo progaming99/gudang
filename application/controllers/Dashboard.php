@@ -18,10 +18,12 @@ class Dashboard extends CI_Controller
         $data['total_sparepart'] = $this->admin->totalSparepart();
         $data['total_aki'] = $this->admin->totalAki();
         $data['total_ban'] = $this->admin->totalBan();
+        $data['total_oli'] = $this->admin->totalOli();
         $data['barang'] = $this->admin->count('barang');
+        $data['stok'] = $this->admin->sum('barang', 'stok');
         $data['ban'] = $this->admin->sum('ban', 'stok');
         $data['aki'] = $this->admin->sum('aki', 'stok');
-        $data['stok'] = $this->admin->sum('barang', 'stok');
+        $data['oli'] = $this->admin->sum('oli', 'stok');
         // $data['total'] = $this->admin->sum('barang', 'stok');
         $data['barang_masuk'] = $this->admin->count('barang_masuk');
         $data['barang_keluar'] = $this->admin->count('barang_keluar');
@@ -47,15 +49,17 @@ class Dashboard extends CI_Controller
         $data['jumlah_pengeluaran'] = $total_pengeluaran;
 
         // Hitung total harga dari tabel aki, ban, dan barang
-    $this->load->database();
-    $query_aki = $this->db->query('SELECT SUM(harga * stok) as total_aki FROM aki');
-    $result_aki = $query_aki->row();
-    $query_ban = $this->db->query('SELECT SUM(harga * stok) as total_ban FROM ban');
-    $result_ban = $query_ban->row();
-    $query_barang = $this->db->query('SELECT SUM(harga * stok) as total_barang FROM barang');
-    $result_barang = $query_barang->row();
-    $total_harga = $result_aki->total_aki + $result_ban->total_ban + $result_barang->total_barang;
-    $data['total_harga'] = $total_harga;
+        $this->load->database();
+        $query_aki = $this->db->query('SELECT SUM(harga * stok) as total_aki FROM aki');
+        $result_aki = $query_aki->row();
+        $query_ban = $this->db->query('SELECT SUM(harga * stok) as total_ban FROM ban');
+        $result_ban = $query_ban->row();
+        $query_barang = $this->db->query('SELECT SUM(harga * stok) as total_barang FROM barang');
+        $result_barang = $query_barang->row();
+        $query_oli = $this->db->query('SELECT SUM(harga * stok) as total_oli FROM oli');
+        $result_oli = $query_oli->row();
+        $total_harga = $result_aki->total_aki + $result_ban->total_ban + $result_barang->total_barang + $result_oli->total_oli;
+        $data['total_harga'] = $total_harga;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

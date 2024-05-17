@@ -60,7 +60,7 @@ class Aki extends CI_Controller
 
             if ($insert) {
                 $this->session->set_flashdata('flash', 'Master aki berhasil di tambahkan!');
-                redirect('aki_masuk/tambah');
+                echo '<script>window.history.go(-2);</script>';
             } else {
                 $this->session->set_flashdata('flash', 'Master aki gagal di tambahkan!');
                 redirect('Aki/tambah');
@@ -73,7 +73,6 @@ class Aki extends CI_Controller
         $data['title'] = 'Form Edit Data Aki';
 
         $id = encode_php_tags($getId);
-        // $data['aki'] = $this->Aki_model->getAkiById($getId);
         $data['kondisi'] = ['Baru', 'Bekas'];
 
         $this->form_validation->set_rules('merk', 'Merk Aki', 'required');
@@ -106,7 +105,7 @@ class Aki extends CI_Controller
     {
         $this->Aki_model->hapusDataAki($id_aki);
         $this->session->set_flashdata('flash', 'Data aki berhasil di hapus!');
-        redirect('Aki');
+        redirect('aki');
     }
 
     public function detail($id_ban)

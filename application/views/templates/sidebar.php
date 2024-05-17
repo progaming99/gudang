@@ -3,6 +3,7 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-white sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
+            <!-- <ul class="navbar-nav bg-white sidebar sidebar-light accordion shadow-sm toggled" id="accordionSidebar"> -->
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex text-white align-items-center bg-primary justify-content-center" href="">
@@ -19,32 +20,82 @@
                 </a>
             </li>
 
-
-
             <!-- Heading -->
             <div class="sidebar-heading bg-primary">
                 Stok Gudang
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li <?= $this->uri->segment(1) == 'Ban' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('Ban'); ?>">
+            <li <?= $this->uri->segment(1) == 'ban' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('ban'); ?>">
                     <i class="fa fa-truck-monster"></i>
                     <span>Ban</span>
                 </a>
             </li>
 
-            <li <?= $this->uri->segment(1) == 'Aki' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('Aki'); ?>">
+            <li <?= $this->uri->segment(1) == 'aki' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('aki'); ?>">
                     <i class="fa fa-car-battery"></i>
                     <span>Aki</span>
                 </a>
             </li>
 
-            <li <?= $this->uri->segment(1) == 'Barang' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link" href="<?= base_url('Barang'); ?>">
+            <li <?= $this->uri->segment(1) == 'barang' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('barang'); ?>">
                     <i class="fa fa-toolbox"></i>
                     <span>Sparepart</span>
+                </a>
+            </li>
+
+            <li <?= $this->uri->segment(1) == 'oli' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link" href="<?= base_url('oli'); ?>">
+                    <i class="fa fa-oil-can"></i>
+                    <span>Oli</span>
+                </a>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading bg-primary">
+                Bengkel
+            </div>
+
+            <!-- Nav Item - Dashboard -->
+            <li <?= $this->uri->segment(1) == 'perbaikan' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link collapsed pb-0" href="<?= base_url('perbaikan'); ?>">
+                    <i class="fa fa-wrench"></i>
+                    <span>Perbaikan</span>
+                </a>
+            </li>
+            <li <?= $this->uri->segment(1) == 'lap_perbaikan' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link collapsed" href="<?= base_url('lap_perbaikan'); ?>">
+                    <!-- <i class="fa fa-wrench"></i> -->
+                    <i class="fa fa-clipboard-list"></i>
+                    <span>Lap. Perbaikan</span>
+                </a>
+            </li>
+
+            <div class="sidebar-heading bg-primary">Perbaikan
+            </div>
+
+            <li <?= $this->uri->segment(1) == 'check_list' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link collapsed pb-0" href="<?= base_url('check_list'); ?>">
+                    <!-- <i class="fa fa-clipboard-list"></i> -->
+                    <i class="fa fa-check-double"></i>
+                    <span>Check List Perbaikan</span>
+                </a>
+            </li>
+
+            <li <?= $this->uri->segment(1) == 'lap_check_list' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link collapsed pb-0" href="<?= base_url('lap_check_list'); ?>">
+                    <i class="fa fa-clipboard-list"></i>
+                    <span>Lap. Check List Perbaikan</span>
+                </a>
+            </li>
+
+            <li <?= $this->uri->segment(1) == 'check_list_armada' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link collapsed" href="<?= base_url('check_list_armada'); ?>">
+                    <i class="fa fa-clipboard-check"></i>
+                    <span>Check List Armada</span>
                 </a>
             </li>
 
@@ -60,11 +111,10 @@
                     aria-expanded="true" aria-controls="collapser">
                     <!-- <i class="fas fa-fw fa-folder"></i> -->
                     <i class="fa fa-folder-plus"></i>
-                    <span>Master User</span>
+                    <span>Master</span>
                 </a>
                 <div id="collapser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-light py-2 collapse-inner rounded">
-                        <h6 class="collapse-header"><i class="fa-regular fa-rectangle-list"></i>Master</h6>
                         <a class="collapse-item" href="<?= base_url('armada'); ?>"><i class="fa fa-truck-moving"></i>
                             Armada</a>
                         <a class="collapse-item" href="<?= base_url('supir'); ?>"><i class="fa fa-peace"></i>
@@ -73,11 +123,15 @@
                             Montir</a>
                         <a class="collapse-item" href="<?= base_url('supplier'); ?>"><i class="fas fa-fw fa-users"></i>
                             Supplier</a>
+                        <a class="collapse-item" href="<?= base_url('kru'); ?>"><i class="fas fa-user-tag"></i>
+                            Kru</a>
+                        <a class="collapse-item" href="<?= base_url('kernet'); ?>"><i class="fa fa-id-badge"></i>
+                            Kernet</a>
                     </div>
                 </div>
             </li>
 
-            <li <?= in_array($this->uri->segment(1), ['satuan', 'jenis', 'barang']) ? 'class="nav-item active"' : '' ?>
+            <li <?= in_array($this->uri->segment(1), ['satuan', 'jenis']) ? 'class="nav-item active"' : '' ?>
                 class="nav-item">
                 <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster"
                     aria-expanded="true" aria-controls="collapseMaster">
@@ -89,9 +143,9 @@
                     <div class="bg-light py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><i class="fa-regular fa-rectangle-list"></i>Master</h6>
                         <a class="collapse-item" href="<?= base_url('satuan'); ?>"><i class="fas fa-folder"></i> Satuan
-                            Barang</a>
+                            Sparepart</a>
                         <a class="collapse-item" href="<?= base_url('jenis'); ?>"><i class="far fa-folder"></i>
-                            Jenis Barang</a>
+                            Jenis Sparepart</a>
                     </div>
                 </div>
             </li>
@@ -163,8 +217,37 @@
 
             <!-- Heading -->
             <div class="sidebar-heading bg-primary">
+                Transaksi Oli
+            </div>
+
+            <!-- Nav Item - Dashboard -->
+            <li <?= $this->uri->segment(1) == 'oli_masuk' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('oli_masuk'); ?>">
+                    <i class="fa fa-oil-can"></i> <i class="fas fa-arrow-down"></i>
+                    <span>Oli Masuk</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li <?= $this->uri->segment(1) == 'oli_keluar' ? 'class="nav-item active"' : '' ?> class="nav-item">
+                <a class="nav-link" href="<?= base_url('oli_keluar'); ?>">
+                    <i class="fa fa-oil-can"></i> <i class="fas fa-arrow-up"></i>
+                    <span>Oli Keluar</span>
+                </a>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading bg-primary">
                 Laporan
             </div>
+
+            <li <?= $this->uri->segment(1) == 'laporan/cetak_laporan_oli' ? 'class="nav-item active"' : '' ?>
+                class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('laporan/cetak_laporan_oli'); ?>">
+                    <i class="fas fa-fw fa-print"></i>
+                    <span>Laporan Oli</span>
+                </a>
+            </li>
 
             <li <?= $this->uri->segment(1) == 'laporan' ? 'class="nav-item active"' : '' ?> class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('laporan'); ?>">

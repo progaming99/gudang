@@ -29,7 +29,7 @@
                             $tanggal_masuk_value = set_value('tanggal_masuk', date('Y-m-d'));
                         ?>
                         <input value="<?= $tanggal_masuk_value; ?>" name="tanggal_masuk" id="tanggal_masuk" type="date"
-                            class="form-control" readonly>
+                            class="form-control">
                         <?= form_error('tanggal_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
@@ -60,7 +60,8 @@
                     <div class="col-md-5">
                         <div class="input-group">
                             <select name="barang_id" id="barang_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Sparepart</option>
+                                <option value="" selected disabled>Pilih Sparepart
+                                </option>
                                 <?php foreach ($barang as $b) : ?>
                                 <option <?= $this->uri->segment(3) == $b['id_barang'] ? 'selected' : '';  ?>
                                     <?= set_select('barang_id', $b['id_barang']) ?> value="<?= $b['id_barang'] ?>">

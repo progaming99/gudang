@@ -57,19 +57,15 @@
                         <td><?= $b->nama_supplier; ?></td>
                         <td><?= $b->harga; ?></td>
                         <td><?= $b->stok; ?></td>
+                        <?php if ($currentRole == 'admin' || $currentRole == 'finance'): ?>
                         <td>
-                            <!-- <a href="<?= base_url('Ban/detail/') . $b->id_ban; ?>"
-                                class="btn btn-circle btn-primary btn-sm"><i class="fa fa-info"></i></a> -->
-
-                            <?php if ($currentRole == 'admin' || $currentRole == 'finance'): ?>
-
                             <a href="<?= base_url('Ban/edit/') . $b->id_ban; ?>"
                                 class="btn btn-circle btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 
                             <a href="<?= base_url('Ban/delete/') . $b->id_ban ?>"
                                 class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
-                            <?php endif; ?>
                         </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                     <?php else : ?>

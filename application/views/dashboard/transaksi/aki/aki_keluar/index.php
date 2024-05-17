@@ -20,83 +20,126 @@
         </div>
     </div>
 
+    <!-- Filter Tanggal -->
+    <div class="row p-3">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" class="form-control"
+                    value="<?= $this->input->get('start_date') ?? date('Y-m-d'); ?>" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" class="form-control"
+                    value="<?= $this->input->get('end_date') ?? date('Y-m-d'); ?>" />
+            </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <div class="form-group">
+                <button onclick="filter()" class="btn btn-success">Filter</button>
+                <button onclick="resetFilter()" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </div>
+
     <?php
         $role = $this->session->userdata('role');
         // Menampilkan nilai peran (role) pengguna
     ?>
 
-    <div class="table-responsive">
-        <table class="table table-striped w-100 dt-responsive" id="dataTable" scrollX="true" scrollY="400">
-            <thead>
-                <tr>
-                    <th>No. </th>
-                    <th>No Transaksi</th>
-                    <th>Tanggal Keluar</th>
-                    <th>Merk</th>
-                    <th>Jumlah Keluar</th>
-                    <th>Armada</th>
-                    <th>Supir</th>
-                    <th>Montir</th>
-                    <th>Tanggal Pasang Baru</th>
-                    <th>Tanggal Pasang Lama</th>
-                    <th>Lama Pemakaian Hari</th>
-                    <th>Lama Pemakaian Tahun</th>
-                    <!-- <th>Masalah</th>
+    <table class="table-responsive table-striped w-100 dt-responsive small-font" id="dataTable" scrollX="true"
+        scrollY="400">
+        <thead>
+            <tr>
+                <th>No. </th>
+                <th>No Transaksi</th>
+                <th>Tanggal Keluar</th>
+                <th>Merk</th>
+                <th>Jumlah Keluar</th>
+                <th>Armada</th>
+                <th>Supir</th>
+                <th>Montir</th>
+                <th>Tanggal Pasang Baru</th>
+                <th>Tanggal Pasang Lama</th>
+                <th>Lama Pemakaian Hari</th>
+                <th>Lama Pemakaian Tahun</th>
+                <!-- <th>Masalah</th>
                     <th>Keterangan</th> -->
-                    <th>User</th>
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <th>Aksi</th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
+                <th>User</th>
+                <?php if ($role == 'admin' || $role == 'finance'): ?>
+                <th>Aksi</th>
+                <?php endif; ?>
+            </tr>
+        </thead>
 
-            <tbody>
-                <?php
+        <tbody>
+            <?php
                 $no = 1;
                 if ($aki_keluar) :
                     foreach ($aki_keluar as $ak) : ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $ak['id_aki_keluar']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tanggal_keluar'])); ?></td>
-                    <td><?= $ak['merk']; ?></td>
-                    <td><?= $ak['jumlah_keluar']; ?></td>
-                    <td><?= $ak['nama_armada']; ?></td>
-                    <td><?= $ak['nama_supir']; ?></td>
-                    <td><?= $ak['nama_montir']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tgl_pasang_baru'])); ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tgl_pasang_lama'])); ?></td>
-                    <td><?= $ak['lama_pemakaian_hari']; ?></td>
-                    <td><?= $ak['lama_pemakaian_tahun']; ?></td>
-                    <!-- <td><?= $ak['masalah']; ?></td>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $ak['id_aki_keluar']; ?></td>
+                <td><?= date('d/m/Y', strtotime($ak['tanggal_keluar'])); ?></td>
+                <td><?= $ak['merk']; ?></td>
+                <td><?= $ak['jumlah_keluar']; ?></td>
+                <td><?= $ak['nama_armada']; ?></td>
+                <td><?= $ak['nama_supir']; ?></td>
+                <td><?= $ak['nama_montir']; ?></td>
+                <td><?= date('d/m/Y', strtotime($ak['tgl_pasang_baru'])); ?></td>
+                <td><?= date('d/m/Y', strtotime($ak['tgl_pasang_lama'])); ?></td>
+                <td><?= $ak['lama_pemakaian_hari']; ?></td>
+                <td><?= $ak['lama_pemakaian_tahun']; ?></td>
+                <!-- <td><?= $ak['masalah']; ?></td>
                     <td><?= $ak['keterangan']; ?></td> -->
-                    <td><?= $ak['nama']; ?></td>
+                <td><?= $ak['nama']; ?></td>
 
-                    <!-- Kondisi untuk tombol hapus -->
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <td>
-                        <a href="<?= base_url('aki_keluar/delete/') . $ak['id_aki_keluar'] ?>"
-                            class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
-                    </td>
-                    <?php endif; ?>
-
-                </tr>
-                <?php endforeach; ?>
-                <?php else : ?>
-                <tr>
-                    <td colspan="100%" class="text-center">
-                        Data Kosong
-                    </td>
-                </tr>
+                <!-- Kondisi untuk tombol hapus -->
+                <?php if ($role == 'admin' || $role == 'finance'): ?>
+                <td>
+                    <a href="<?= base_url('aki_keluar/delete/') . $ak['id_aki_keluar'] ?>"
+                        class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
+                </td>
                 <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+
+            </tr>
+            <?php endforeach; ?>
+            <?php else : ?>
+            <tr>
+                <td colspan="100%" class="text-center">
+                    Data Kosong
+                </td>
+            </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <style>
+    .small-font {
+        font-size: 10px;
+        /* Sesuaikan dengan ukuran font yang diinginkan */
+    }
+    </style>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function filter() {
+    const startDate = $("#startDate").val();
+    const endDate = $("#endDate").val();
+
+    window.location.href = `Aki_keluar?start_date=${startDate}&end_date=${endDate}`;
+}
+
+function resetFilter() {
+    window.location.href = 'Aki_keluar'
+}
+</script>
 
 <script>
 <?php

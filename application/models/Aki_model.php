@@ -35,15 +35,13 @@ class Aki_model extends CI_Model
         return $this->db->get('aki')->result();
     }
 
-    public function getAkiMasuk($limit = null, $id_aki = null, $range = null)
+    public function getAkiMasuk($limit = null, $id_aki = null, $start_date = null, $end_date = null)
     {
         $this->db->select('*'); // Menghapus alias yang digunakan sebelumnya
         $this->db->from('aki_masuk');
         $this->db->join('user', 'aki_masuk.user_id = user.id_user');
         $this->db->join('aki', 'aki_masuk.aki_id = aki.id_aki');
         $this->db->join('supplier', 'aki.supplier_id = supplier.id_supplier');
-        // $this->db->join('satuan', 'aki.satuan_id = satuan.id_satuan');
-        // $this->db->order_by('id_barang_masuk');
 
         if ($limit != null) {
             $this->db->limit($limit);
@@ -53,10 +51,14 @@ class Aki_model extends CI_Model
             $this->db->where('aki_masuk.aki_id', $id_aki);
         }
 
-        if ($range != null) {
-            $this->db->where('aki_masuk.tanggal_masuk' . ' >=', $range['mulai']);
-            $this->db->where('aki_masuk.tanggal_masuk' . ' <=', $range['akhir']);
-        }
+        if ($start_date != null) {
+            if ($start_date == $end_date) {
+                $this->db->where('aki_masuk.tanggal_masuk', $start_date);
+            } else {
+                $this->db->where('aki_masuk.tanggal_masuk >=', $start_date);
+                $this->db->where('aki_masuk.tanggal_masuk <=', $end_date);
+            }
+        }   
 
         $this->db->order_by('aki_masuk.id_aki_masuk', 'DESC');
 
@@ -66,25 +68,31 @@ class Aki_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function getAkiKeluar($limit = null, $id_aki = null, $range = null)
+    public function getAkiKeluar($limit = null, $id_aki = null, $start_date = null, $end_date = null)
     {
         $this->db->select('*');
         $this->db->join('user', 'aki_keluar.user_id = user.id_user');
         $this->db->join('aki', 'aki_keluar.aki_id = aki.id_aki');
-        $this->db->join('armada', 'aki_keluar.id_armada = armada.id_armada');
-        $this->db->join('supir', 'aki_keluar.id_supir = supir.id_supir');
-        $this->db->join('montir', 'aki_keluar.id_montir = montir.id_montir');
+        $this->db->join('armada', 'aki_keluar.armada_id = armada.id_armada');
+        $this->db->join('supir', 'aki_keluar.supir_id = supir.id_supir');
+        $this->db->join('montir', 'aki_keluar.montir_id = montir.id_montir');
+
         if ($limit != null) {
             $this->db->limit($limit);
         }
         if ($id_aki != null) {
             $this->db->where('id_aki', $id_aki);
         }
-        if ($range != null) {
-            $this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
-            $this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
+      	if ($start_date != null) {
+            if ($start_date == $end_date) {
+            $this->db->where('tanggal_keluar' . ' >=', $start_date['mulai']);
+        } else {
+            $this->db->where('tanggal_keluar >=', $start_date);
+            $this->db->where('tanggal_keluar <=', $end_date);
+        }
         }
         $this->db->order_by('id_aki_keluar', 'DESC');
+        
         return $this->db->get('aki_keluar')->result_array();
     }
 
@@ -175,7 +183,7 @@ class Aki_model extends CI_Model
     public function hapusDataAki($id_aki)
     {
         $this->db->where('id_aki', $id_aki);
-        $this->db->delete('Aki');
+        $this->db->delete('aki');
     }   
 
     public function laporan($table, $mulai, $akhir)

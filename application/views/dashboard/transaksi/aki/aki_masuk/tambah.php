@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="supplier">Supplier</label>
+                    <label class="col-md-4 text-md-right" for="supplier_id">Supplier</label>
                     <div class="col-md-5">
-                        <input readonly id="supplier_aki" type="text" class="form-control">
+                        <input readonly id="supplier_aki" name="supplier_id" type="text" class="form-control">
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="kondisi">Kondisi</label>
                     <div class="col-md-5">
-                        <input readonly id="kondisi" type="text" class="form-control" readonly>
+                        <input readonly id="kondisi" name="kondisi" type="text" class="form-control" readonly>
                     </div>
                 </div>
 

@@ -45,14 +45,14 @@
                         <?= form_error('nama', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="email">Email</label>
                     <div class="col-md-6">
                         <input value="<?= set_value('email'); ?>" type="text" id="email" name="email"
                             class="form-control" placeholder="Email">
                         <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
                     </div>
-                </div>
+                </div> -->
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="no_telp">Nomor Telepon</label>
                     <div class="col-md-6">

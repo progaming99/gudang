@@ -68,7 +68,7 @@ class Montir extends CI_Controller
             $data['montir'] = $this->admin->get('montir', ['id_montir' => $id]);            
             $this->load->view('templates/header', $data);  
             $this->load->view('templates/sidebar', $data);  
-            $this->load->view('dashboard/barang/montir/edit', $data);  
+            $this->load->view('dashboard/menu/montir/edit', $data);  
             $this->load->view('templates/footer', $data);  
         } else {
             $input = $this->input->post(null, true);
@@ -81,6 +81,17 @@ class Montir extends CI_Controller
                 redirect('Montir/edit');
             }
         }
+    }
+
+    public function delete($getId)
+    {
+        $id = encode_php_tags($getId);
+        if ($this->admin->delete('montir', 'id_montir', $id)) {
+            $this->session->set_flashdata('flash', 'Data montir berhasil di hapus!');
+        } else {
+            $this->session->set_flashdata('flash', 'Data montir gagal di hapus!');
+        }
+        redirect('montir');
     }
 }
 ?>

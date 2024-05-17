@@ -150,6 +150,8 @@ let supplier_aki = $('#supplier_aki');
 let supplier_aki_keluar = $('#supplier_aki_keluar');
 let supplier_ban = $('#supplier_ban');
 let supplier_ban_keluar = $('#supplier_ban_keluar');
+let supplier_oli = $('#supplier_oli');
+let supplier_oli_keluar = $('#supplier_oli_keluar');
 let harga = $('#harga');
 let kondisi = $('#kondisi');
 let stok = $('#stok');
@@ -158,6 +160,7 @@ let total = $('#total_stok');
 let jumlah = hal == 'barangmasuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
 let jumlah_aki = hal == 'aki_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
 let jumlah_ban = hal == 'ban_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
+let jumlah_oli = hal == 'oli_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
 
 $(document).on('change', '#barang_id', function() {
     let url = '<?= base_url('barang/getstok/'); ?>' + this.value;
@@ -192,6 +195,20 @@ $(document).on('change', '#ban_id', function() {
         satuan.html(data.nama_satuan);
         supplier_ban.val(data.nama_supplier);
         supplier_ban_keluar.val(data.nama_supplier);
+        stok.val(data.stok);
+        ukuran.val(data.ukuran);
+        harga.val(data.harga);
+        total.val(data.stok);
+        jumlah_aki.focus();
+    });
+});
+
+$(document).on('change', '#oli_id', function() {
+    let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
+    $.getJSON(url, function(data) {
+        satuan.html(data.nama_satuan);
+        supplier_oli.val(data.nama_supplier);
+        supplier_oli_keluar.val(data.nama_supplier);
         stok.val(data.stok);
         ukuran.val(data.ukuran);
         harga.val(data.harga);

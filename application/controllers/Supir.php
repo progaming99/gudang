@@ -68,7 +68,7 @@ class Supir extends CI_Controller
             $data['supir'] = $this->admin->get('supir', ['id_supir' => $id]);            
             $this->load->view('templates/header', $data);  
             $this->load->view('templates/sidebar', $data);  
-            $this->load->view('dashboard/barang/supir/edit', $data);  
+            $this->load->view('dashboard/menu/supir/edit', $data);  
             $this->load->view('templates/footer', $data);  
         } else {
             $input = $this->input->post(null, true);
@@ -81,6 +81,17 @@ class Supir extends CI_Controller
                 redirect('Supir/edit');
             }
         }
+    }
+
+    public function delete($getId)
+    {
+        $id = encode_php_tags($getId);
+        if ($this->admin->delete('supir', 'id_supir', $id)) {
+            $this->session->set_flashdata('flash', 'Data supir berhasil di hapus!');
+        } else {
+            $this->session->set_flashdata('flash', 'Data supir gagal di hapus!');
+        }
+        redirect('supir');
     }
 }
 ?>

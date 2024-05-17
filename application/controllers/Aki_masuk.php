@@ -8,7 +8,6 @@ class Aki_masuk extends CI_Controller
         parent::__construct();
         cek_login();
 
-        // $this->load->model('Aki_model');
         $this->load->model('Aki_model');
         $this->load->library('form_validation');
     }
@@ -22,55 +21,46 @@ class Aki_masuk extends CI_Controller
 
         $data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
 
-        $data['currentRole'] = $currentRole; // Tambahkan ini
-        // Cek apakah ada filter tanggal yang dikirimkan
-        $dateRange = $this->input->get('date_range');
-        if (!empty($dateRange)) {
-            // Jika ada filter tanggal, parse dan gunakan dalam query
-            list($start_date, $end_date) = explode(' - ', $dateRange);
-            $range = [
-                'mulai' => date('Y-m-d', strtotime($start_date)),
-                'akhir' => date('Y-m-d', strtotime($end_date)),
-            ];
-            $data['aki_masuk'] = $this->Aki_model->getAkiMasuk(null, null, $range);
-        } else {
-            // Jika tidak ada filter tanggal, muat data tanpa filter
-        $data['aki_masuk'] = $this->Aki_model->getAkiMasuk(); // Menggunakan null untuk parameter lain jika tidak diperlukan
-        }
+        $data['currentRole'] = $currentRole; 
         
+        $start_date = $this->input->get('start_date') ?? null;
+		$end_date = $this->input->get('end_date') ?? null;
+           
+        $data['aki_masuk'] = $this->Aki_model->getAkiMasuk(null, null, $start_date, $end_date);
+                
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('dashboard/transaksi/aki/aki_masuk/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
-    public function filter()
-    {
-        // Metode ini akan menangani permintaan AJAX untuk filter tanggal
-        // Anda dapat menggunakan kode yang sama dengan di atas untuk memfilter data
-        // dan mengembalikan data yang difilter dalam format JSON
-        $dateRange = $this->input->get('date_range');
-        if (!empty($dateRange)) {
-            list($start_date, $end_date) = explode(' - ', $dateRange);
-            $range = [
-                'mulai' => date('Y-m-d', strtotime($start_date)),
-                'akhir' => date('Y-m-d', strtotime($end_date)),
-            ];
-            $filteredData = $this->Aki_model->getBarangMasuk(null, null, $range);
-        } else {
-            // Jika tidak ada filter, kembalikan semua data
-            $filteredData = $this->Aki_model->getBarangMasuk();
-        }
+    // public function filter()
+    // {
+    //     // Metode ini akan menangani permintaan AJAX untuk filter tanggal
+    //     // Anda dapat menggunakan kode yang sama dengan di atas untuk memfilter data
+    //     // dan mengembalikan data yang difilter dalam format JSON
+    //     $dateRange = $this->input->get('date_range');
+    //     if (!empty($dateRange)) {
+    //         list($start_date, $end_date) = explode(' - ', $dateRange);
+    //         $range = [
+    //             'mulai' => date('Y-m-d', strtotime($start_date)),
+    //             'akhir' => date('Y-m-d', strtotime($end_date)),
+    //         ];
+    //         $filteredData = $this->Aki_model->getAkiMasuk(null, null, $range);
+    //     } else {
+    //         // Jika tidak ada filter, kembalikan semua data
+    //         $filteredData = $this->Aki_model->getAkiMasuk();
+    //     }
 
-        // Kembalikan data dalam format JSON
-        $jsonData = json_encode($filteredData);
+    //     // Kembalikan data dalam format JSON
+    //     $jsonData = json_encode($filteredData);
 
-        // Atur header Content-Type
-        header('Content-Type: application/json');
+    //     // Atur header Content-Type
+    //     header('Content-Type: application/json');
 
-        // Mengirimkan respons JSON
-        echo $jsonData;
-    }
+    //     // Mengirimkan respons JSON
+    //     echo $jsonData;
+    // }
 
     private function _validasi()
     {

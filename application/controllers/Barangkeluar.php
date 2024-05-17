@@ -14,17 +14,18 @@ class Barangkeluar extends CI_Controller
 
     public function index()
     {        
-        $data['title'] = "Barang keluar";
+         $data['title'] = "Barang keluar";
         
          // Cek peran pengguna saat ini
          $id_user = $this->session->userdata('id_user');
          $currentRole = $this->Admin_model->get_user_role_by_id($id_user);
  
          $data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
-
-         $data['currentRole'] = $currentRole; // Tambahkan ini
+       
+		 $start_date = $this->input->get('start_date') ?? null;
+		 $end_date = $this->input->get('end_date') ?? null;
  
-         $data['barangkeluar'] = $this->Admin_model->getBarangkeluar();
+         $data['barangkeluar'] = $this->Admin_model->getBarangkeluar(null, null, $start_date, $end_date);
  
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar', $data);
@@ -34,8 +35,11 @@ class Barangkeluar extends CI_Controller
 
     private function _validasi()
     {
-        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required|trim');
+        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required');
         $this->form_validation->set_rules('barang_id', 'Barang', 'required');
+        $this->form_validation->set_rules('id_armada', 'Armada', 'required');
+        $this->form_validation->set_rules('id_supir', 'Supir', 'required');
+        $this->form_validation->set_rules('id_montir', 'Montir', 'required');
     
         $input = $this->input->post('barang_id', true);
 
@@ -80,7 +84,7 @@ class Barangkeluar extends CI_Controller
             $data['montir'] = $this->Admin_model->get('montir');
 
             // Mendapatkan dan men-generate kode transaksi barang keluar
-            $kode = 'T-BK-' . date('ymd');
+            $kode = 'T-SK-' . date('ymd');
             $kode_terakhir = $this->Admin_model->getMax('barang_keluar', 'id_barang_keluar', $kode);
            
             // $kode_tambah = substr($kode_terakhir, -5, 5);
@@ -101,6 +105,7 @@ class Barangkeluar extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $input = $this->input->post(null, true);
+
             $insert = $this->Admin_model->insert('barang_keluar', $input);
 
             if ($insert) {

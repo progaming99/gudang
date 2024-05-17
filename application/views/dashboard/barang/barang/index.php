@@ -55,7 +55,6 @@
                     <td>Rp <?= number_format($b['harga'], 0, '.', ','); ?></td>
                     <td><?= $b['stok']; ?> - <?= $b['nama_satuan']; ?></td>
                     <?php if ($role == 'admin' || $role == 'finance'): ?>
-
                     <td>
                         <a href="<?= base_url('barang/edit/') . $b['id_barang'] ?>"
                             class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>

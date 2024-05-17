@@ -55,19 +55,15 @@
                         <td><?= $ak->nama_supplier; ?></td>
                         <td>Rp <?= number_format($ak->harga, 0, '.', ','); ?></td>
                         <td><?= $ak->stok; ?></td>
+                        <?php if ($currentRole == 'admin' || $currentRole == 'finance'): ?>
                         <td>
-                            <!-- <a href="<?= base_url('Aki/detail/') . $ak->id_aki; ?>"
-                                class="btn btn-circle btn-primary btn-sm"><i class="fa fa-info"></i></a> -->
-
-                            <?php if ($currentRole == 'admin' || $currentRole == 'finance'): ?>
-
-                            <a href="<?= base_url('Aki/edit/') . $ak->id_aki; ?>"
+                            <a href="<?= base_url('aki/edit/') . $ak->id_aki; ?>"
                                 class="btn btn-circle btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 
-                            <a href="<?= base_url('Aki/hapus/') . $ak->id_aki ?>"
+                            <a href="<?= base_url('aki/hapus/') . $ak->id_aki ?>"
                                 class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
-                            <?php endif; ?>
                         </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                     <?php else : ?>

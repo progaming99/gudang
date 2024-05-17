@@ -22,11 +22,10 @@ class Ban_keluar extends CI_Controller
  
          $data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
 
-         $data['currentRole'] = $currentRole; // Tambahkan ini
- 
-        //  var_dump(  $data['ban_keluar'] = $this->Admin_model->getBanKeluar());
-        //  die;
-         $data['ban_keluar'] = $this->Admin_model->getBanKeluar();
+         $start_date = $this->input->get('start_date') ?? null;
+         $end_date = $this->input->get('end_date') ?? null;
+         
+         $data['ban_keluar'] = $this->Admin_model->getBanKeluar(null, null, $start_date, $end_date);
  
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar', $data);
@@ -36,8 +35,17 @@ class Ban_keluar extends CI_Controller
 
     private function _validasi()
     {
-        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required|trim');
-        $this->form_validation->set_rules('ban_id', 'Ban', 'required');
+        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required');
+        $this->form_validation->set_rules('ban_id', 'Merk Ban', 'required');
+        $this->form_validation->set_rules('tgl_pasang', 'Tanggal Pasang', 'required');
+        $this->form_validation->set_rules('tgl_ganti', 'Tanggal Ganti', 'required');
+        $this->form_validation->set_rules('rencana_ganti', 'Rencana Ganti', 'required');
+        $this->form_validation->set_rules('no_posisi', 'Nomor Posisi Ban', 'required');
+        $this->form_validation->set_rules('no_seri_baru', 'Nomor Seri Baru', 'required');
+        $this->form_validation->set_rules('no_seri_lama', 'Nomor Seri Lama', 'required');
+        $this->form_validation->set_rules('armada_id', 'Armada', 'required');
+        $this->form_validation->set_rules('supir_id', 'Supir', 'required');
+        $this->form_validation->set_rules('montir_id', 'Montir', 'required');
     
         $input = $this->input->post('ban_id', true);
 
@@ -72,7 +80,7 @@ class Ban_keluar extends CI_Controller
     public function tambah()
     {
         $data['title'] = "Ban Keluar";
-        // error_reporting(0);
+        error_reporting(0);
 
         $this->_validasi();
         if ($this->form_validation->run() == false) {

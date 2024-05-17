@@ -24,7 +24,10 @@ class Aki_keluar extends CI_Controller
 
          $data['currentRole'] = $currentRole; // Tambahkan ini
  
-         $data['aki_keluar'] = $this->Admin_model->getAkikeluar();
+         $start_date = $this->input->get('start_date') ?? null;
+         $end_date = $this->input->get('end_date') ?? null;
+
+         $data['aki_keluar'] = $this->Admin_model->getAkikeluar(null, null, $start_date, $end_date);
  
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar', $data);
@@ -34,8 +37,13 @@ class Aki_keluar extends CI_Controller
 
     private function _validasi()
     {
-        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required|trim');
+        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required');
         $this->form_validation->set_rules('aki_id', 'Aki', 'required');
+        $this->form_validation->set_rules('armada_id', 'Armada', 'required');
+        $this->form_validation->set_rules('supir_id', 'Supir', 'required');
+        $this->form_validation->set_rules('montir_id', 'Montir', 'required');
+        $this->form_validation->set_rules('tgl_pasang_baru', 'Tanggal Pasang Baru', 'required');
+        $this->form_validation->set_rules('tgl_pasang_lama', 'Tanggal Pasang Lama', 'required');
     
         $input = $this->input->post('aki_id', true);
 
@@ -70,7 +78,7 @@ class Aki_keluar extends CI_Controller
     public function tambah()
     {
         $data['title'] = "Aki Keluar";
-        // error_reporting(0);
+        error_reporting(0);
     
         $this->_validasi();
         if ($this->form_validation->run() == false) {

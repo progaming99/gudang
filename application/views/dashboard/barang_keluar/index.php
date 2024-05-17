@@ -20,6 +20,30 @@
         </div>
     </div>
 
+    <!-- Filter Tanggal -->
+    <div class="row p-3">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" class="form-control"
+                    value="<?= $this->input->get('start_date') ?? date('Y-m-d'); ?>" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" class="form-control"
+                    value="<?= $this->input->get('end_date') ?? date('Y-m-d'); ?>" />
+            </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <div class="form-group">
+                <button onclick="filter()" class="btn btn-success">Filter</button>
+                <button onclick="resetFilter()" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </div>
+
     <?php
         $role = $this->session->userdata('role');
         // Menampilkan nilai peran (role) pengguna
@@ -87,6 +111,19 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function filter() {
+    const startDate = $("#startDate").val();
+    const endDate = $("#endDate").val();
+
+    window.location.href = `Barangkeluar?start_date=${startDate}&end_date=${endDate}`;
+}
+
+function resetFilter() {
+    window.location.href = 'Barangkeluar'
+}
+</script>
 
 <script>
 <?php

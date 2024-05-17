@@ -25,7 +25,8 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="username">Username</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('username', $user['username']); ?>" type="text" id="username" name="username" class="form-control" placeholder="Username">
+                        <input value="<?= set_value('username', $user['username']); ?>" type="text" id="username"
+                            name="username" class="form-control" placeholder="Username">
                         <?= form_error('username', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -33,21 +34,23 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="nama">Nama</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('nama', $user['nama']); ?>" type="text" id="nama" name="nama" class="form-control" placeholder="Nama">
+                        <input value="<?= set_value('nama', $user['nama']); ?>" type="text" id="nama" name="nama"
+                            class="form-control" placeholder="Nama">
                         <?= form_error('nama', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="email">Email</label>
                     <div class="col-md-6">
                         <input value="<?= set_value('email', $user['email']); ?>" type="text" id="email" name="email" class="form-control" placeholder="Email">
                         <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
                     </div>
-                </div>
+                </div> -->
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="no_telp">Nomor Telepon</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('no_telp', $user['no_telp']); ?>" type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
+                        <input value="<?= set_value('no_telp', $user['no_telp']); ?>" type="text" id="no_telp"
+                            name="no_telp" class="form-control" placeholder="Nomor Telepon">
                         <?= form_error('no_telp', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -55,14 +58,26 @@
                     <label class="col-md-4 text-md-right" for="role">Role</label>
                     <div class="col-md-6">
                         <div class="custom-control custom-radio">
-                            <input <?= $user['role'] == 'admin' ? 'checked' : ''; ?> <?= set_radio('role', 'admin'); ?> value="admin" type="radio" id="admin" name="role" class="custom-control-input">
+                            <input <?= $user['role'] == 'admin' ? 'checked' : ''; ?> <?= set_radio('role', 'admin'); ?>
+                                value="admin" type="radio" id="admin" name="role" class="custom-control-input">
                             <label class="custom-control-label" for="admin">Admin</label>
                         </div>
+
                         <div class="custom-control custom-radio">
-                            <input <?= $user['role'] == 'gudang' ? 'checked' : ''; ?> <?= set_radio('role', 'gudang'); ?> value="gudang" type="radio" id="gudang" name="role" class="custom-control-input">
+                            <input <?= $user['role'] == 'finance' ? 'checked' : ''; ?>
+                                <?= set_radio('role', 'finance'); ?> value="finance" type="radio" id="finance"
+                                name="role" class="custom-control-input">
+                            <label class="custom-control-label" for="finance">Finance</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input <?= $user['role'] == 'gudang' ? 'checked' : ''; ?>
+                                <?= set_radio('role', 'gudang'); ?> value="gudang" type="radio" id="gudang" name="role"
+                                class="custom-control-input">
                             <label class="custom-control-label" for="gudang">Gudang</label>
                         </div>
                         <?= form_error('role', '<span class="text-danger small">', '</span>'); ?>
+
                     </div>
                 </div>
                 <br>
@@ -81,21 +96,22 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    <?php
+<?php
     if ($this->session->flashdata('error')) { ?>
-        var isi = <?php echo json_encode($this->session->flashdata('error')) ?>;
-        Swal.fire({
-            title: "Gagl",
-            text: "<?= $this->session->flashdata('error') ?>",
-            icon: "error",
-            button: false,
-            timer: 5000,
-        });
-    <?php
+var isi = <?php echo json_encode($this->session->flashdata('error')) ?>;
+Swal.fire({
+    title: "Gagl",
+    text: "<?= $this->session->flashdata('error') ?>",
+    icon: "error",
+    button: false,
+    timer: 5000,
+});
+<?php
         unset($_SESSION['error']);
     } ?>
 </script>

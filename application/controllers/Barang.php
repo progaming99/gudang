@@ -95,6 +95,7 @@ class Barang extends CI_Controller
             $data['jenis'] = $this->admin->get('jenis');
             $data['satuan'] = $this->admin->get('satuan');
             $data['supplier'] = $this->admin->get('supplier');
+            
             $data['barang'] = $this->admin->get('barang', ['id_barang' => $id]);
 
             $this->load->view('templates/header', $data);

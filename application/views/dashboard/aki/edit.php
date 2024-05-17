@@ -5,22 +5,13 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                            Form Tambah aki
+                            Form Edit Aki
                         </h4>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <?= form_open('', [], ['stok' => 0, 'id_aki' => $aki['id_aki']]); ?>
-                <!-- <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="id_aki">Kode Aki</label>
-                    <div class="col-md-9">
-                        <input readonly value="<?= set_value('id_aki', $id_aki); ?>" name="id_aki" id="id_aki"
-                            type="text" class="form-control" placeholder="ID aki...">
-                        <?= form_error('id_aki', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div> -->
-
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="merk">Merk</label>
                     <div class="col-md-9">

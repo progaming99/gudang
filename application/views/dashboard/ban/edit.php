@@ -15,8 +15,8 @@
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="merk">Merk Ban</label>
                     <div class="col-md-9">
-                        <input value="<?= set_value('merk', $ban['merk']); ?>" name="merk" id="merk" type="text"
-                            class="form-control" placeholder="Merk Ban...">
+                        <input value="<?= $ban['merk']; ?>" name="merk" id="merk" type="text" class="form-control"
+                            placeholder="Merk Ban...">
                         <?= form_error('merk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>

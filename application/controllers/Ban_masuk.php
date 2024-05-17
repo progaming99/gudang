@@ -21,22 +21,11 @@ class Ban_masuk extends CI_Controller
 
         $data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
 
-        $data['currentRole'] = $currentRole; // Tambahkan ini
-        // Cek apakah ada filter tanggal yang dikirimkan
-        $dateRange = $this->input->get('date_range');
-        if (!empty($dateRange)) {
-            // Jika ada filter tanggal, parse dan gunakan dalam query
-            list($start_date, $end_date) = explode(' - ', $dateRange);
-            $range = [
-                'mulai' => date('Y-m-d', strtotime($start_date)),
-                'akhir' => date('Y-m-d', strtotime($end_date)),
-            ];
-            $data['ban_masuk'] = $this->admin->getBanMasuk(null, null, $range);
-        } else {
-            // Jika tidak ada filter tanggal, muat data tanpa filter
-        $data['ban_masuk'] = $this->admin->getBanMasuk(); // Menggunakan null untuk parameter lain jika tidak diperlukan
-        }
-        
+        $start_date = $this->input->get('start_date') ?? null;
+		$end_date = $this->input->get('end_date') ?? null;
+
+        $data['ban_masuk'] = $this->admin->getBanMasuk(null, null, $start_date, $end_date);
+                
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('dashboard/transaksi/ban/ban_masuk/index', $data);
@@ -81,7 +70,7 @@ class Ban_masuk extends CI_Controller
 
     public function tambah()
     {
-        // error_reporting(0);
+        error_reporting(0);
         $data['title'] = "Ban Masuk";
 
         $this->_validasi();

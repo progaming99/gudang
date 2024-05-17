@@ -68,7 +68,7 @@ class Armada extends CI_Controller
             $data['armada'] = $this->admin->get('armada', ['id_armada' => $id]);            
             $this->load->view('templates/header', $data);  
             $this->load->view('templates/sidebar', $data);  
-            $this->load->view('dashboard/barang/armada/edit', $data);  
+            $this->load->view('dashboard/menu/armada/edit', $data);  
             $this->load->view('templates/footer', $data);  
         } else {
             $input = $this->input->post(null, true);
@@ -81,6 +81,17 @@ class Armada extends CI_Controller
                 redirect('Armada/edit');
             }
         }
+    }
+
+    public function delete($getId)
+    {
+        $id = encode_php_tags($getId);
+        if ($this->admin->delete('armada', 'id_armada', $id)) {
+            $this->session->set_flashdata('flash', 'Data armada berhasil di hapus!');
+        } else {
+            $this->session->set_flashdata('flash', 'Data armada gagal di hapus!');
+        }
+        redirect('armada');
     }
 }
 ?>

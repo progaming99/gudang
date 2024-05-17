@@ -23,16 +23,16 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Stok
-                                    Sparepart
+                                    Oli
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
-                        if (isset($stok) && is_numeric($stok)) {
-                            echo $stok;
+                        if (isset($oli) && is_numeric($oli)) {
+                            echo $oli;
                         } else {
                             echo "0"; // Display a message if $aki is not set or not numeric.
                         }
-                        ?>
+                        ?> Liter
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-6 mb-4">
+    <!-- <div class="col-xl-3 col-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -145,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="col-xl-3 col-6 mb-4">
         <div class="card border-left-danger shadow h-100 py-2">
@@ -206,6 +206,31 @@
                             <?php
                         if (isset($total_sparepart) && is_numeric($total_sparepart)) {
                             echo number_format($total_sparepart, 0, '.', ',');
+                        } else {
+                            echo "0"; // Display a message if $jumlah_pengeluaran is not set or not numeric.
+                        }
+                        ?>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Nominal Oli
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
+                            <?php
+                        if (isset($total_oli) && is_numeric($total_oli)) {
+                            echo number_format($total_oli, 0, '.', ',');
                         } else {
                             echo "0"; // Display a message if $jumlah_pengeluaran is not set or not numeric.
                         }

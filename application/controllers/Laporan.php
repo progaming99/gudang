@@ -21,7 +21,6 @@ class Laporan extends CI_Controller
         $this->form_validation->set_rules('tanggal', 'Periode Tanggal', 'required');
 
         if ($this->form_validation->run() == false) {
-            // $this->template->load('templates/dashboard', 'laporan/form', $data);
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('dashboard/laporan/index', $data);
@@ -36,12 +35,64 @@ class Laporan extends CI_Controller
 
             $query = '';
             if ($table == 'barang_masuk') {
-                $query = $this->admin->getBarangMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanBarangMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             } else {
-                $query = $this->admin->getBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             }
 
             $this->_cetak($query, $table, $tanggal);
+        }
+    }
+
+    public function cetak_laporan_oli()
+    {
+         $data['title'] = "Laporan Oli";
+        
+         // Cek peran pengguna saat ini
+         $id_user = $this->session->userdata('id_user');
+         $currentRole = $this->admin->get_user_role_by_id($id_user);
+ 
+         $data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
+       
+		 $start_date = $this->input->get('start_date') ?? null;
+		 $end_date = $this->input->get('end_date') ?? null;
+ 
+         $data['cetakOli'] = $this->admin->getCetakLaporanOli(null, null, $start_date, $end_date);
+ 
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar', $data);
+         $this->load->view('dashboard/laporan/oli/index.php', $data);
+         $this->load->view('templates/footer', $data);
+    }
+
+    public function tambah_oli()
+    {
+        $data['title'] = "Laporan Oli";
+        error_reporting(0);
+    
+        // $data['oli'] = $this->admin->get('oli');
+        $data['oli'] = $this->admin->get('oli_masuk');
+
+        $this->form_validation->set_rules('oli', 'Nama Oli', 'required');
+
+        if ($this->form_validation->run() == false) {    
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('dashboard/laporan/oli/tambah', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            // Ambil data input
+            $input = $this->input->post(null, true);
+            
+            // Insert data ke dalam tabel aki_keluar
+            $insert = $this->admin->insert('oli_keluar', $input);    
+            if ($insert) {
+                $this->session->set_flashdata('flash', 'Data berhasil ditambahkan!');
+                redirect('oli_keluar');
+            } else {
+                $this->session->set_flashdata('error', 'Oops, ada kesalahan!');
+                redirect('oli_keluar/tambah');
+            }
         }
     }
 
@@ -69,9 +120,9 @@ class Laporan extends CI_Controller
 
             $query = '';
             if ($table == 'aki_masuk') {
-                $query = $this->admin->getAkiMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanAkiMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             } else {
-                $query = $this->admin->getAkiKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanAkiKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             }
 
             $this->_cetakAki($query, $table, $tanggal);
@@ -102,9 +153,9 @@ class Laporan extends CI_Controller
 
             $query = '';
             if ($table == 'ban_masuk') {
-                $query = $this->admin->getBanMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanBanMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             } else {
-                $query = $this->admin->getBanKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->admin->getLaporanBanKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             }
 
             $this->_cetakBan($query, $table, $tanggal);

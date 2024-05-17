@@ -63,7 +63,7 @@ class Ban_model extends CI_Model
     public function hapusDataBan($id_ban)
     {
         $this->db->where('id_ban', $id_ban);
-        $this->db->delete('Ban');
+        $this->db->delete('ban');
     }
 
         // Method untuk mengambil peran (role) pengguna berdasarkan ID

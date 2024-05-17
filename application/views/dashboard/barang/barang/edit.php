@@ -20,6 +20,7 @@
                         <?= form_error('nama_barang', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="jenis_id">Jenis</label>
                     <div class="col-md-9">
@@ -40,6 +41,7 @@
                         <?= form_error('jenis_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="supplier_id">Supplier</label>
                     <div class="col-md-9">
@@ -61,6 +63,7 @@
                         <?= form_error('supplier_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="harga">Harga</label>
                     <div class="col-md-9">
@@ -69,6 +72,7 @@
                         <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="satuan_id">Satuan</label>
                     <div class="col-md-9">
@@ -89,6 +93,7 @@
                         <?= form_error('satuan_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="stok">Stok</label>
                     <div class="col-md-9">

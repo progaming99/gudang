@@ -89,10 +89,10 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_armada">Armada</label>
+                    <label class="col-md-4 text-md-right" for="armada_id">Armada</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="id_armada" id="id_armada" class="custom-select">
+                            <select name="armada_id" id="armada_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Armada</option>
                                 <?php foreach ($armada as $ar) : ?>
                                 <option value="<?= $ar['id_armada'] ?>">
@@ -104,15 +104,15 @@
                                         class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('id_armada', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('armada_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_supir">Supir</label>
+                    <label class="col-md-4 text-md-right" for="supir_id">Supir</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="id_supir" id="id_supir" class="custom-select">
+                            <select name="supir_id" id="supir_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Supir</option>
                                 <?php foreach ($supir as $sp) : ?>
                                 <option value="<?= $sp['id_supir'] ?>">
@@ -124,7 +124,7 @@
                                         class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('id_supir', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('supir_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -132,7 +132,7 @@
                     <label class="col-md-4 text-md-right" for="id_montir">Montir</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="id_montir" id="id_montir" class="custom-select">
+                            <select name="montir_id" id="montir_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Montir</option>
                                 <?php foreach ($montir as $mt) : ?>
                                 <option value="<?= $mt['id_montir'] ?>">
@@ -144,7 +144,7 @@
                                         class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('id_montir', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('montir_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 

@@ -26,7 +26,7 @@
                     <th>Foto</th>
                     <th>Nama</th>
                     <th>Username</th>
-                    <th>Email</th>
+                    <!-- <th>Email</th> -->
                     <th>No. telp</th>
                     <th>Role</th>
                     <th>Aksi</th>
@@ -41,12 +41,12 @@
                 <tr>
                     <td><?= $no++; ?></td>
                     <td>
-                        <img width="30" src="<?= base_url() ?>assets/img/avatar/<?= $user['foto'] ?>"
-                            alt="<?= $user['nama']; ?>" class="img-thumbnail rounded-circle">
-                    </td>
+
+                    </td><img width="30" src="<?= base_url() ?>assets/img/avatar/<?= $user['foto'] ?>"
+                        alt="<?= $user['nama']; ?>" class="img-thumbnail rounded-circle">
                     <td><?= $user['nama']; ?></td>
                     <td><?= $user['username']; ?></td>
-                    <td><?= $user['email']; ?></td>
+                    <!-- <td><?= $user['email']; ?></td> -->
                     <td><?= $user['no_telp']; ?></td>
                     <td><?= $user['role']; ?></td>
                     <td>
@@ -99,7 +99,7 @@ $('.delete').on('click', function(e) {
     const href = $(this).attr('href');
 
     Swal.fire({
-        title: 'Hapus data aki?',
+        title: 'Hapus user?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
