@@ -37,37 +37,23 @@ class Oli_keluar extends CI_Controller
 
 	private function _validasi()
 	{
+		$this->form_validation->set_rules('id_oli_masuk', 'Oli', 'required');
 		$this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required|trim');
-		$this->form_validation->set_rules('oli_id', 'Oli', 'required');
 
-		$input = $this->input->post('oli_id', true);
+		$id_oli_masuk = $this->input->post('id_oli_masuk', true);
+		//CEK STOK OLI
+		$cek_stok = $this->Oli_model->cekStok($id_oli_masuk);
+		$stok_oli = $cek_stok->stok;
+		$valid_stok = $stok_oli + 1;
 
-		// Pengecekan apakah $input adalah string sebelum menggunakan trim()
-		if (isset($input) && is_string($input)) {
-			$result = $this->Oli_model->get('oli', ['id_oli' => $input]);
-
-			if ($result !== null && isset($result['stok'])) {
-				$stok = $result['stok'];
-				$stok_valid = $stok + 1;
-
-				$this->form_validation->set_rules(
-					'jumlah_keluar',
-					'Jumlah Keluar',
-					"required|trim|numeric|greater_than[0]|less_than[{$stok_valid}]",
-					[
-						'less_than' => "Jumlah Keluar tidak boleh lebih dari {$stok}"
-					]
-				);
-			} else {
-				// Tangani kasus di mana $result adalah null atau 'stok' tidak ada dalam $result
-				// Anda bisa menampilkan pesan kesalahan atau mengambil tindakan lain sesuai kebutuhan
-				$this->form_validation->set_rules('jumlah_keluar', 'Jumlah Keluar', 'required|trim|numeric|greater_than[0]');
-			}
-		} else {
-			// Tangani kasus di mana $input bukan string
-			// Anda bisa menampilkan pesan kesalahan atau mengambil tindakan lain sesuai kebutuhan
-			$this->form_validation->set_rules('jumlah_keluar', 'Jumlah Keluar', 'required|numeric|greater_than[0]');
-		}
+		$this->form_validation->set_rules(
+			'jumlah_keluar',
+			'Jumlah Keluar',
+			"required|trim|numeric|greater_than[0]|less_than[$valid_stok]",
+			[
+				'less_than' => "Jumlah Keluar tidak boleh lebih dari {$stok_oli}"
+			]
+		);
 	}
 
 	public function tambah()
@@ -100,12 +86,29 @@ class Oli_keluar extends CI_Controller
 			$this->load->view('templates/footer', $data);
 		} else {
 			// Ambil data input
-			$input = $this->input->post(null, true);
+			$store_data = [
+				'id_oli_keluar' => $this->input->post('id_oli_keluar'),
+				'oli_masuk_id' => $this->input->post('id_oli_masuk'),
+				'user_id' => $this->input->post('user_id'),
+				// GA PERLU OLI_ID
+				// 'oli_id' => $this->input->post(''),
+				'id_armada' => $this->input->post('id_armada'),
+				'jumlah_keluar' => $this->input->post('jumlah_keluar'),
+				'tanggal_keluar' => $this->input->post('tanggal_keluar'),
+			];
 
-			// Insert data ke dalam tabel aki_keluar
-			$insert = $this->Oli_model->insert('oli_keluar', $input);
+			// Insert data ke dalam tabel oli_keluar
+			$insert = $this->Oli_model->insert('oli_keluar', $store_data);
 
 			if ($insert) {
+				// UPDATE STOK OLI 
+				$id_oli = $this->input->post('id_oli');
+
+				$cek_stok = $this->Oli_model->cekStok($this->input->post('id_oli_masuk'));
+				$update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');
+
+				$this->Oli_model->update('oli', 'id_oli', $id_oli, ['stok' => $update_stok]);
+
 				$this->session->set_flashdata('flash', 'Data berhasil ditambahkan!');
 				redirect('oli_keluar');
 			} else {

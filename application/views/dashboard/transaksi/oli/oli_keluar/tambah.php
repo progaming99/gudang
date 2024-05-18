@@ -34,13 +34,13 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="oli_id">Merk oli</label>
+                    <label class="col-md-4 text-md-right" for="id_oli_masuk">Merk oli</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="oli_id" id="oli_id" class="custom-select">
+                            <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select">
                                 <option value="" selected disabled>Pilih Merk</option>
                                 <?php foreach ($oli as $o) : ?>
-                                <option value="<?= $o->id_oli_masuk ?>">
+                                <option value="<?= $o->id_oli_masuk ?>" data-id="<?= $o->oli_id; ?>">
                                     <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -49,9 +49,11 @@
                                         class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('oli_id', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('id_oli_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+				<!-- ID OLI  -->
+				<input type="hidden" name="id_oli" id="id_oli" value="">
 
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="supplier">Supplier</label>
@@ -142,10 +144,16 @@ Swal.fire({
 
 
 <script>
-	$(document).on('change', '#oli_id', function() {
+	$(document).on('change', '#id_oli_masuk', function() {
+	// Ambil nilai dari atribut data-id
+	let selectedOption = $(this).find('option:selected');
+    let dataId = selectedOption.data('id');
+    
+    // Ambil nilai dari input dengan id 'id_oli'
+    $('#id_oli').val(dataId);
+
     let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
     $.getJSON(url, function(data) {
-		console.log(data);
         satuan.html(data.nama_satuan);
         supplier_oli.val(data.nama_supplier);
         supplier_oli_keluar.val(data.nama_supplier);
