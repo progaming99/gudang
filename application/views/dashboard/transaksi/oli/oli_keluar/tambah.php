@@ -40,8 +40,8 @@
                             <select name="oli_id" id="oli_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Merk</option>
                                 <?php foreach ($oli as $o) : ?>
-                                <option value="<?= $o['id_oli'] ?>">
-                                    <?= $o['id_oli'] . ' | ' . $o['nama_oli'] ?></option>
+                                <option value="<?= $o->id_oli_masuk ?>">
+                                    <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
@@ -138,4 +138,22 @@ Swal.fire({
 <?php
         unset($_SESSION['error']);
     } ?>
+</script>
+
+
+<script>
+	$(document).on('change', '#oli_id', function() {
+    let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
+    $.getJSON(url, function(data) {
+		console.log(data);
+        satuan.html(data.nama_satuan);
+        supplier_oli.val(data.nama_supplier);
+        supplier_oli_keluar.val(data.nama_supplier);
+        stok.val(data.stok);
+        ukuran.val(data.ukuran);
+        harga.val(data.harga);
+        total.val(data.stok);
+        jumlah_aki.focus();
+    });
+});
 </script>
