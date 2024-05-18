@@ -115,7 +115,7 @@ function filter() {
 }
 
 function resetFilter() {
-    window.location.href = 'Barangkeluar'
+    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>"
 }
 </script>
 
