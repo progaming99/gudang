@@ -13,9 +13,9 @@ class Admin_model extends CI_Model
 	}
 
 	public function getPerbaikanByid($id_perbaikan)
-    {
-        return $this->db->get_where('perbaikan', ['id_perbaikan' => $id_perbaikan])->row_array();
-    }
+	{
+		return $this->db->get_where('perbaikan', ['id_perbaikan' => $id_perbaikan])->row_array();
+	}
 
 	public function totalSparepart()
 	{
@@ -37,7 +37,7 @@ class Admin_model extends CI_Model
 		$query = $this->db->get('ban');
 		return $query->row()->total_harga;
 	}
-	
+
 	public function totalOli()
 	{
 		$this->db->select('SUM(harga * stok) as total_harga');
@@ -151,7 +151,7 @@ class Admin_model extends CI_Model
 		$this->db->join('armada', 'bk.id_armada = armada.id_armada');
 		$this->db->join('supir', 'bk.id_supir = supir.id_supir');
 		$this->db->join('montir', 'bk.id_montir = montir.id_montir');
-		
+
 		if ($limit != null) {
 			$this->db->limit($limit);
 		}
@@ -182,7 +182,7 @@ class Admin_model extends CI_Model
 		$this->db->join('armada', 'bk.id_armada = armada.id_armada');
 		$this->db->join('supir', 'bk.id_supir = supir.id_supir');
 		$this->db->join('montir', 'bk.id_montir = montir.id_montir');
-		
+
 		if ($limit != null) {
 			$this->db->limit($limit);
 		}
@@ -203,7 +203,7 @@ class Admin_model extends CI_Model
 		return $this->db->get('barang_keluar bk')->result_array();
 	}
 
-	public function getAkiMasuk($limit = null, $id_aki = null,  $start_date = null, $end_date = null)
+	public function getAkiMasuk($limit = null, $id_aki = null, $start_date = null, $end_date = null)
 	{
 		$this->db->select('*'); // Menghapus alias yang digunakan sebelumnya
 		$this->db->from('aki_masuk');
@@ -254,15 +254,15 @@ class Admin_model extends CI_Model
 			$this->db->where('id_aki', $id_aki);
 		}
 		if ($start_date != null) {
-            if ($start_date == $end_date) {
-            	$this->db->where('aki_keluar.tanggal_keluar', $start_date);
+			if ($start_date == $end_date) {
+				$this->db->where('aki_keluar.tanggal_keluar', $start_date);
 			} else {
 				$this->db->where('aki_keluar.tanggal_keluar >=', $start_date);
 				$this->db->where('aki_keluar.tanggal_keluar <=', $end_date);
 			}
 		}
 		$this->db->order_by('id_aki_keluar', 'DESC');
-		
+
 		return $this->db->get('aki_keluar')->result_array();
 	}
 
@@ -286,7 +286,7 @@ class Admin_model extends CI_Model
 
 		if ($start_date != null) {
 			if ($start_date == $end_date) {
-			$this->db->where('ban_masuk.tanggal_masuk', $start_date);
+				$this->db->where('ban_masuk.tanggal_masuk', $start_date);
 			} else {
 				$this->db->where('ban_masuk.tanggal_masuk >=', $start_date);
 				$this->db->where('ban_masuk.tanggal_masuk <=', $end_date);
@@ -324,9 +324,9 @@ class Admin_model extends CI_Model
 			}
 		}
 		$this->db->order_by('id_ban_keluar', 'DESC');
-		
+
 		return $this->db->get('ban_keluar')->result_array();
-	}		
+	}
 
 	public function getMax($table, $field, $kode = null)
 	{
@@ -406,83 +406,83 @@ class Admin_model extends CI_Model
 	}
 
 	public function getLaporanBarangMasuk($limit = null, $id_barang = null, $range = null)
-    {
-        $this->db->select('*');
+	{
+		$this->db->select('*');
 		$this->db->join('user', 'barang_masuk.user_id = user.id_user');
 		$this->db->join('barang', 'barang_masuk.barang_id = barang.id_barang');
 		$this->db->join('supplier', 'barang.supplier_id = supplier.id_supplier');
 		$this->db->join('satuan', 'barang.satuan_id = satuan.id_satuan');
-        if ($limit != null) {
-            $this->db->limit($limit);
-        }
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
 
-        if ($id_barang != null) {
-            $this->db->where('id_barang', $id_barang);
-        }
+		if ($id_barang != null) {
+			$this->db->where('id_barang', $id_barang);
+		}
 
-        if ($range != null) {
-            $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
-            $this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
-        }
+		if ($range != null) {
+			$this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
+			$this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
+		}
 
-        $this->db->order_by('id_barang_masuk', 'DESC');
-        return $this->db->get('barang_masuk')->result_array();
-    }
+		$this->db->order_by('id_barang_masuk', 'DESC');
+		return $this->db->get('barang_masuk')->result_array();
+	}
 
 	public function getLaporanBarangKeluar($limit = null, $id_barang = null, $range = null)
-    {
-        $this->db->select('*');
-        $this->db->join('user u', 'bk.user_id = u.id_user');
-        $this->db->join('barang b', 'bk.barang_id = b.id_barang');
-        $this->db->join('satuan s', 'b.satuan_id = s.id_satuan');
-        if ($limit != null) {
-            $this->db->limit($limit);
-        }
-        if ($id_barang != null) {
-            $this->db->where('id_barang', $id_barang);
-        }
-        if ($range != null) {
-            $this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
-            $this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
-        }
-        $this->db->order_by('id_barang_keluar', 'DESC');
-        return $this->db->get('barang_keluar bk')->result_array();
-    }
+	{
+		$this->db->select('*');
+		$this->db->join('user u', 'bk.user_id = u.id_user');
+		$this->db->join('barang b', 'bk.barang_id = b.id_barang');
+		$this->db->join('satuan s', 'b.satuan_id = s.id_satuan');
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+		if ($id_barang != null) {
+			$this->db->where('id_barang', $id_barang);
+		}
+		if ($range != null) {
+			$this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
+			$this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
+		}
+		$this->db->order_by('id_barang_keluar', 'DESC');
+		return $this->db->get('barang_keluar bk')->result_array();
+	}
 
 	public function getLaporanBanMasuk($limit = null, $id_ban = null, $range = null)
-	{		
-			$this->db->select('*');
-			$this->db->join('user', 'ban_masuk.user_id = user.id_user');
-			$this->db->join('ban', 'ban_masuk.ban_id = ban.id_ban');
-			$this->db->join('supplier', 'ban.supplier_id = supplier.id_supplier');
-	
-			if ($limit != null) {
-				$this->db->limit($limit);
-			}
-	
-			if ($id_ban != null) {
-				$this->db->where('id_ban', $id_ban);
-			}
-	
-			if ($range != null) {
-				$this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
-				$this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
-			}
-			// if ($start_date != null) {
-			// 	if ($start_date == $end_date) {
-			// 	$this->db->where('ban_masuk.tanggal_masuk', $start_date);
-			// 	} else {
-			// 		$this->db->where('ban_masuk.tanggal_masuk >=', $start_date);
-			// 		$this->db->where('ban_masuk.tanggal_masuk <=', $end_date);
-			// 	}
-			// }
-	
-			$this->db->order_by('id_ban_masuk', 'DESC');
-			$this->db->select('(ban.harga * ban_masuk.jumlah_masuk) as total_harga', false);
-	
-			// Hitung total harga dengan mengalikan harga_ban dengan jumlah_masuk
-	
-			return $this->db->get('ban_masuk')->result_array();
+	{
+		$this->db->select('*');
+		$this->db->join('user', 'ban_masuk.user_id = user.id_user');
+		$this->db->join('ban', 'ban_masuk.ban_id = ban.id_ban');
+		$this->db->join('supplier', 'ban.supplier_id = supplier.id_supplier');
+
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+
+		if ($id_ban != null) {
+			$this->db->where('id_ban', $id_ban);
+		}
+
+		if ($range != null) {
+			$this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
+			$this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
+		}
+		// if ($start_date != null) {
+		// 	if ($start_date == $end_date) {
+		// 	$this->db->where('ban_masuk.tanggal_masuk', $start_date);
+		// 	} else {
+		// 		$this->db->where('ban_masuk.tanggal_masuk >=', $start_date);
+		// 		$this->db->where('ban_masuk.tanggal_masuk <=', $end_date);
+		// 	}
+		// }
+
+		$this->db->order_by('id_ban_masuk', 'DESC');
+		$this->db->select('(ban.harga * ban_masuk.jumlah_masuk) as total_harga', false);
+
+		// Hitung total harga dengan mengalikan harga_ban dengan jumlah_masuk
+
+		return $this->db->get('ban_masuk')->result_array();
 	}
 
 	public function getLaporanBanKeluar($limit = null, $id_ban = null, $range = null)
@@ -514,44 +514,44 @@ class Admin_model extends CI_Model
 		// 	}
 		// }
 		$this->db->order_by('id_ban_keluar', 'DESC');
-		
+
 		return $this->db->get('ban_keluar')->result_array();
-	}	
+	}
 
 	public function getLaporanAkiMasuk($limit = null, $id_ban = null, $range = null)
-	{		
-			$this->db->select('*');
-			$this->db->join('user', 'ban_masuk.user_id = user.id_user');
-			$this->db->join('ban', 'ban_masuk.ban_id = ban.id_ban');
-			$this->db->join('supplier', 'ban.supplier_id = supplier.id_supplier');
-	
-			if ($limit != null) {
-				$this->db->limit($limit);
-			}
-	
-			if ($id_ban != null) {
-				$this->db->where('id_ban', $id_ban);
-			}
-	
-			if ($range != null) {
-				$this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
-				$this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
-			}
-			// if ($start_date != null) {
-			// 	if ($start_date == $end_date) {
-			// 	$this->db->where('ban_masuk.tanggal_masuk', $start_date);
-			// 	} else {
-			// 		$this->db->where('ban_masuk.tanggal_masuk >=', $start_date);
-			// 		$this->db->where('ban_masuk.tanggal_masuk <=', $end_date);
-			// 	}
-			// }
-	
-			$this->db->order_by('id_ban_masuk', 'DESC');
-			$this->db->select('(ban.harga * ban_masuk.jumlah_masuk) as total_harga', false);
-	
-			// Hitung total harga dengan mengalikan harga_ban dengan jumlah_masuk
-	
-			return $this->db->get('ban_masuk')->result_array();
+	{
+		$this->db->select('*');
+		$this->db->join('user', 'ban_masuk.user_id = user.id_user');
+		$this->db->join('ban', 'ban_masuk.ban_id = ban.id_ban');
+		$this->db->join('supplier', 'ban.supplier_id = supplier.id_supplier');
+
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+
+		if ($id_ban != null) {
+			$this->db->where('id_ban', $id_ban);
+		}
+
+		if ($range != null) {
+			$this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
+			$this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
+		}
+		// if ($start_date != null) {
+		// 	if ($start_date == $end_date) {
+		// 	$this->db->where('ban_masuk.tanggal_masuk', $start_date);
+		// 	} else {
+		// 		$this->db->where('ban_masuk.tanggal_masuk >=', $start_date);
+		// 		$this->db->where('ban_masuk.tanggal_masuk <=', $end_date);
+		// 	}
+		// }
+
+		$this->db->order_by('id_ban_masuk', 'DESC');
+		$this->db->select('(ban.harga * ban_masuk.jumlah_masuk) as total_harga', false);
+
+		// Hitung total harga dengan mengalikan harga_ban dengan jumlah_masuk
+
+		return $this->db->get('ban_masuk')->result_array();
 	}
 
 	public function getLaporanAkiKeluar($limit = null, $id_aki = null, $range = null)
@@ -576,8 +576,8 @@ class Admin_model extends CI_Model
 		}
 
 		// if ($start_date != null) {
-        //     if ($start_date == $end_date) {
-        //     	$this->db->where('aki_keluar.tanggal_keluar', $start_date);
+		//     if ($start_date == $end_date) {
+		//     	$this->db->where('aki_keluar.tanggal_keluar', $start_date);
 		// 	} else {
 		// 		$this->db->where('aki_keluar.tanggal_keluar >=', $start_date);
 		// 		$this->db->where('aki_keluar.tanggal_keluar <=', $end_date);
@@ -585,34 +585,34 @@ class Admin_model extends CI_Model
 		// }
 
 		$this->db->order_by('id_aki_keluar', 'DESC');
-		
+
 		return $this->db->get('aki_keluar')->result_array();
 	}
 
 	public function getCetakLaporanOli($limit = null, $id_oli = null, $start_date = null, $end_date = null)
-    {
-        $this->db->select('*');
-        $this->db->join('user', 'oli_keluar.user_id = user.id_user');
-        $this->db->join('oli', 'oli_keluar.oli_id = oli.id_oli');
-        $this->db->join('armada', 'oli_keluar.id_armada = armada.id_armada');
-        $this->db->join('oli_masuk', 'oli_keluar.oli_masuk_id = oli_masuk.id_oli_masuk');
+	{
+		$this->db->select('*');
+		$this->db->join('user', 'oli_keluar.user_id = user.id_user', 'left');
+		$this->db->join('oli', 'oli_keluar.oli_id = oli.id_oli', 'left');
+		$this->db->join('armada', 'oli_keluar.id_armada = armada.id_armada', 'left');
+		$this->db->join('oli_masuk', 'oli_keluar.oli_masuk_id = oli_masuk.id_oli_masuk', 'left');
 
-        if ($limit != null) {
-            $this->db->limit($limit);
-        }
-        if ($id_oli != null) {
-            $this->db->where('id_oli', $id_oli);
-        }
-      	if ($start_date != null) {
-            if ($start_date == $end_date) {
-            $this->db->where('oli_keluar.tanggal_keluar', $start_date);
-        } else {
-            $this->db->where('oli_keluar.tanggal_keluar >=', $start_date);
-            $this->db->where('oli_keluar.tanggal_keluar <=', $end_date);
-        }
-        }
-        $this->db->order_by('id_oli_keluar', 'DESC');
-        
-        return $this->db->get('oli_keluar')->result_array();
-    }
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+		if ($id_oli != null) {
+			$this->db->where('id_oli', $id_oli);
+		}
+		if ($start_date != null) {
+			if ($start_date == $end_date) {
+				$this->db->where('oli_keluar.tanggal_keluar', $start_date);
+			} else {
+				$this->db->where('oli_keluar.tanggal_keluar >=', $start_date);
+				$this->db->where('oli_keluar.tanggal_keluar <=', $end_date);
+			}
+		}
+		$this->db->order_by('id_oli_keluar', 'DESC');
+
+		return $this->db->get('oli_keluar')->result_array();
+	}
 }

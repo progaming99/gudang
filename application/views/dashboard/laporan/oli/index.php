@@ -111,7 +111,7 @@ function filter() {
     const startDate = $("#startDate").val();
     const endDate = $("#endDate").val();
 
-    window.location.href = `Barangkeluar?start_date=${startDate}&end_date=${endDate}`;
+    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>" + `?start_date=${startDate}&end_date=${endDate}`;
 }
 
 function resetFilter() {
