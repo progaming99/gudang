@@ -69,10 +69,11 @@ class Oli_model extends CI_Model
 				$this->db->where('oli_masuk.tanggal_masuk <=', $end_date);
 			}
 		}
-		
+
+		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
+
 		// Hitung total harga dengan mengalikan harga_barang dengan jumlah_masuk
 		$this->db->select('(oli.harga * oli_masuk.jumlah_masuk) as total_harga', false);
-		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
 
 		return $this->db->get()->result_array();
 	}
@@ -82,7 +83,7 @@ class Oli_model extends CI_Model
 		$this->db->select('*');
 		$this->db->join('user', 'oli_keluar.user_id = user.id_user');
 		$this->db->join('oli', 'oli_keluar.oli_id = oli.id_oli');
-		$this->db->join('armada', 'oli_keluar.id_armada = armada.id_armada');
+		$this->db->join('armada', 'oli_keluar.armada_id = armada.id_armada');
 
 		if ($limit != null) {
 			$this->db->limit($limit);
@@ -157,17 +158,6 @@ class Oli_model extends CI_Model
 		return $result ? $result->role : null;
 	}
 
-	// public function tambahDataAki($data)
-	// {
-	//     $tanggal_pasang_baru = strtotime($data['tanggal_pasang_baru']);
-	//     $tanggal_pasang_lama = strtotime($data['tanggal_pasang_lama']);
-	//     $lama_pemakaian_hari = ($tanggal_pasang_lama - $tanggal_pasang_baru) / (60 * 60 * 24);
-
-	//     $data['lama_pemakaian_hari'] = $lama_pemakaian_hari;
-
-	//     $this->db->insert('aki', $data);
-	// }
-
 	public function hapusDataOli($id_aki)
 	{
 		$this->db->where('id_oli', $id_aki);
@@ -182,11 +172,17 @@ class Oli_model extends CI_Model
 		return $this->db->get($table)->result_array();
 	}
 
-	public function cekStok($id_oli_masuk)
+	// public function cekStok($id)
+	// {
+	// 	$this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');
+	// 	return $this->db->get_where('oli', ['id_oli' => $id])->row_array();
+	// }
+
+	public function cekStoK($id_oli_masuk)
 	{
 		return $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left')
 			->join('supplier', 'oli.supplier_id=supplier.id_supplier', 'left')
-			->get_where('oli_masuk', ['id_oli_masuk' => $id_oli_masuk])->row();
+			->get_where('oli_masuk', ['id_oli_masuk' => $id_oli_masuk])->row_array();
 
 
 		// $this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');

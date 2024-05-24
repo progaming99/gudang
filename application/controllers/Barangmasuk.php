@@ -97,8 +97,6 @@ class Barangmasuk extends CI_Controller
 				$total_harga = $barang['harga'] * $input['jumlah_masuk'];
 				$input['total_harga'] = $total_harga;
 
-
-
 				$insert = $this->admin->insert('barang_masuk', $input);
 
 				if ($insert) {

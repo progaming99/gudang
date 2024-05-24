@@ -24,29 +24,27 @@
                     <label class="col-md-4 text-md-right" for="tanggal_keluar">Tanggal Keluar</label>
                     <div class="col-md-4">
                         <?php
-                            // Menggunakan format "Y-m-d" untuk tanggal hari ini
-                            $tanggal_keluar_value = set_value('tanggal_keluar', date('Y-m-d'));
+                        // Menggunakan format "Y-m-d" untuk tanggal hari ini
+                        $tanggal_keluar_value = set_value('tanggal_keluar', date('Y-m-d'));
                         ?>
-                        <input value="<?= $tanggal_keluar_value; ?>" name="tanggal_keluar" id="tanggal_keluar"
-                            type="date" class="form-control" placeholder="Tanggal Masuk...">
+                        <input value="<?= $tanggal_keluar_value; ?>" name="tanggal_keluar" id="tanggal_keluar" type="date" class="form-control" placeholder="Tanggal Masuk...">
                         <?= form_error('tanggal_keluar', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_oli_masuk">Nama oli</label>
+                    <label class="col-md-4 text-md-right" for="id_oli_masuk">Nama Oli</label>
                     <div class="col-md-5">
                         <div class="input-group">
                             <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select">
                                 <option value="" selected disabled>Pilih Nama</option>
                                 <?php foreach ($oli as $o) : ?>
-                                <option value="<?= $o->id_oli_masuk ?>" data-id="<?= $o->oli_id; ?>">
-                                    <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option>
+                                    <option value="<?= $o->id_oli_masuk; ?>" data-id="<?= $o->oli_id; ?>">
+                                        <?= $o->oli_id . ' | ' . $o->nama_oli; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('oli/tambah'); ?>"><i
-                                        class="fa fa-plus"></i></a>
+                                <a class="btn btn-primary" href="<?= base_url('oli/tambah'); ?>"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                         <?= form_error('id_oli_masuk', '<small class="text-danger">', '</small>'); ?>
@@ -80,8 +78,7 @@
                     <label class="col-md-4 text-md-right" for="jumlah_keluar">Jumlah Keluar</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar"
-                                type="number" class="form-control" placeholder="Jumlah Keluar...">
+                            <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="satuan">Satuan</span>
                             </div>
@@ -91,22 +88,21 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_armada">Armada</label>
+                    <label class="col-md-4 text-md-right" for="armada_id">Armada</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="id_armada" id="id_armada" class="custom-select">
+                            <select name="armada_id" id="armada_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Armada</option>
                                 <?php foreach ($armada as $ar) : ?>
-                                <option value="<?= $ar['id_armada'] ?>">
-                                    <?= $ar['nama_armada'] ?></option>
+                                    <option value="<?= $ar['id_armada'] ?>">
+                                        <?= $ar['nama_armada'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('armada/tambah'); ?>"><i
-                                        class="fa fa-plus"></i></a>
+                                <a class="btn btn-primary" href="<?= base_url('armada/tambah'); ?>"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('id_armada', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('armada_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -122,46 +118,39 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-<?php
-    if ($this->session->flashdata('error')) { ?>
-var isi = <?php echo json_encode($this->session->flashdata('error')) ?>;
-Swal.fire({
-    title: "Gagal",
-    text: "<?= $this->session->flashdata('error') ?>",
-    icon: "error",
-    button: false,
-    timer: 5000,
-});
-<?php
-        unset($_SESSION['error']);
+    <?php if ($this->session->flashdata('error')) { ?>
+        var isi = <?php echo json_encode($this->session->flashdata('error')) ?>;
+        Swal.fire({
+            title: "Gagal",
+            text: "<?= $this->session->flashdata('error') ?>",
+            icon: "error",
+            button: false,
+            timer: 5000,
+        });
+    <?php unset($_SESSION['error']);
     } ?>
 </script>
 
-
 <script>
-$(document).on('change', '#id_oli_masuk', function() {
-    // Ambil nilai dari atribut data-id
-    let selectedOption = $(this).find('option:selected');
-    let dataId = selectedOption.data('id');
+    $(document).on('change', '#id_oli_masuk', function() {
+        let selectedOption = $(this).find('option:selected');
+        let value = selectedOption.val();
+        let [idOliMasuk, oliId] = value.split('|');
 
-    // Ambil nilai dari input dengan id 'id_oli'
-    $('#id_oli').val(dataId);
+        // Set the hidden input value for id_oli
+        $('#id_oli').val(oliId);
 
-    let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
-    $.getJSON(url, function(data) {
-        satuan.html(data.nama_satuan);
-        supplier_oli.val(data.nama_supplier);
-        supplier_oli_keluar.val(data.nama_supplier);
-        stok.val(data.stok);
-        ukuran.val(data.ukuran);
-        harga.val(data.harga);
-        total.val(data.stok);
-        jumlah_aki.focus();
+        let url = '<?= base_url('oli/getstok/'); ?>' + idOliMasuk;
+        $.getJSON(url, function(data) {
+            $('#satuan').text(data.nama_satuan);
+            $('#supplier_oli_keluar').val(data.nama_supplier);
+            $('#stok').val(data.stok);
+            $('#harga').val(data.harga);
+            // Additional processing as needed
+        });
     });
-});
 </script>
