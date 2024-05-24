@@ -35,11 +35,11 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="oli_id">Jenis Oli</label>
+                    <label class="col-md-4 text-md-right" for="oli_id">Nama Oli</label>
                     <div class="col-md-5">
                         <div class="input-group">
                             <select name="oli_id" id="oli_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Jenis</option>
+                                <option value="" selected disabled>Pilih Nama</option>
                                 <?php foreach ($oli as $oli) : ?>
                                 <option <?= $this->uri->segment(3) == $oli['id_oli'] ? 'selected' : '';  ?>
                                     <?= set_select('oli_id', $oli['id_oli']) ?> value="<?= $oli['id_oli'] ?>">

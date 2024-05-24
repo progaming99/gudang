@@ -69,11 +69,10 @@ class Oli_model extends CI_Model
 				$this->db->where('oli_masuk.tanggal_masuk <=', $end_date);
 			}
 		}
-
-		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
-
+		
 		// Hitung total harga dengan mengalikan harga_barang dengan jumlah_masuk
 		$this->db->select('(oli.harga * oli_masuk.jumlah_masuk) as total_harga', false);
+		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
 
 		return $this->db->get()->result_array();
 	}

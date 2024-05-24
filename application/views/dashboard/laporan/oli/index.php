@@ -7,7 +7,7 @@
                 </h4>
             </div>
 
-            <div class="col-auto">
+            <!-- <div class="col-auto">
                 <a href="<?= base_url('laporan/tambah_oli') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
@@ -15,7 +15,7 @@
                     <span class="text">
                         Input Laporan
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -111,7 +111,8 @@ function filter() {
     const startDate = $("#startDate").val();
     const endDate = $("#endDate").val();
 
-    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>" + `?start_date=${startDate}&end_date=${endDate}`;
+    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>" +
+        `?start_date=${startDate}&end_date=${endDate}`;
 }
 
 function resetFilter() {

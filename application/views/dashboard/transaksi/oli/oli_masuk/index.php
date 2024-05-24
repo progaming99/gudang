@@ -59,7 +59,7 @@
                 <th>No. </th>
                 <th>No Transaksi</th>
                 <th>Tanggal Masuk</th>
-                <th>Jenis Oli</th>
+                <th>Nama Oli</th>
                 <th>Supplier</th>
                 <th>Harga</th>
                 <th>Jumlah Masuk</th>

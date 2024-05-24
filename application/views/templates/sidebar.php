@@ -249,7 +249,7 @@
                 </a>
             </li>
 
-            <li <?= $this->uri->segment(1) == 'laporan' ? 'class="nav-item active"' : '' ?> class="nav-item">
+            <!-- <li <?= $this->uri->segment(1) == 'laporan' ? 'class="nav-item active"' : '' ?> class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('laporan'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Laporan Sparepart</span>
@@ -268,7 +268,7 @@
                     <i class="fas fa-fw fa-print"></i>
                     <span>Laporan Ban</span>
                 </a>
-            </li>
+            </li> -->
 
             <?php if (is_admin()) : ?>
 

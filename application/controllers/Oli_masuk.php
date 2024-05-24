@@ -77,7 +77,7 @@ class Oli_masuk extends CI_Controller
 
         $this->_validasi();
         if ($this->form_validation->run() == false) {
-            // $data['supplier'] = $this->Aki_model->get('supplier');
+            // $data['supplier'] = $this->Oli_model->get('supplier');
             $data['oli'] = $this->Oli_model->get('oli');
 
             // Mendapatkan dan men-generate kode transaksi oli masuk

@@ -72,13 +72,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="harga">Harga</label>
-                    <div class="col-md-5">
-                        <input id="harga" type="number" name="harga" class="form-control">
-                    </div>
-                </div> -->
-
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="ukuran">Ukuran</label>
                     <div class="col-md-5">
