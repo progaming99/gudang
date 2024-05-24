@@ -54,7 +54,7 @@
                     <label class="col-md-3 text-md-right" for="nama_aki">Harga</label>
                     <div class="col-md-9">
                         <input value="<?= set_value('harga'); ?>" name="harga" id="harga" type="number"
-                            class="form-control" placeholder="Harga Aki">
+                            class="form-control" placeholder="Harga Oli">
                         <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>

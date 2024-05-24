@@ -56,7 +56,7 @@
                     <th>No. </th>
                     <th>No Transaksi</th>
                     <th>Tanggal Keluar</th>
-                    <th>Jenis Oli</th>
+                    <th>Nama Oli</th>
                     <th>Jumlah Keluar</th>
                     <th>Armada</th>
                     <th>User</th>

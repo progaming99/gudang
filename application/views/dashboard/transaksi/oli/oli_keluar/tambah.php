@@ -34,11 +34,11 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_oli_masuk">Merk oli</label>
+                    <label class="col-md-4 text-md-right" for="id_oli_masuk">Nama oli</label>
                     <div class="col-md-5">
                         <div class="input-group">
                             <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select">
-                                <option value="" selected disabled>Pilih Merk</option>
+                                <option value="" selected disabled>Pilih Nama</option>
                                 <?php foreach ($oli as $o) : ?>
                                 <option value="<?= $o->id_oli_masuk ?>" data-id="<?= $o->oli_id; ?>">
                                     <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option>
@@ -52,8 +52,8 @@
                         <?= form_error('id_oli_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
-				<!-- ID OLI  -->
-				<input type="hidden" name="id_oli" id="id_oli" value="">
+                <!-- ID OLI  -->
+                <input type="hidden" name="id_oli" id="id_oli" value="">
 
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="supplier">Supplier</label>
@@ -144,11 +144,11 @@ Swal.fire({
 
 
 <script>
-	$(document).on('change', '#id_oli_masuk', function() {
-	// Ambil nilai dari atribut data-id
-	let selectedOption = $(this).find('option:selected');
+$(document).on('change', '#id_oli_masuk', function() {
+    // Ambil nilai dari atribut data-id
+    let selectedOption = $(this).find('option:selected');
     let dataId = selectedOption.data('id');
-    
+
     // Ambil nilai dari input dengan id 'id_oli'
     $('#id_oli').val(dataId);
 
