@@ -112,4 +112,11 @@ class Oli extends CI_Controller
 		output_json($query);
 	}
 
+	public function getstokoli($getId)
+	{
+		$id_oli_masuk = encode_php_tags($getId);
+		$query = $this->Oli_model->cekStokOli($id_oli_masuk);
+		output_json($query);
+	}
+
 }

@@ -249,26 +249,29 @@
                 </a>
             </li>
 
-            <!-- <li <?= $this->uri->segment(1) == 'laporan' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('laporan'); ?>">
+            <li <?= $this->uri->segment(1) == 'laporan/cetak_laporan_sparepart' ? 'class="nav-item active"' : '' ?>
+                class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('laporan/cetak_laporan_sparepart'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Laporan Sparepart</span>
                 </a>
             </li>
 
-            <li <?= $this->uri->segment(1) == 'laporan/aki' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('laporan/aki'); ?>">
+            <li <?= $this->uri->segment(1) == 'laporan/cetak_laporan_aki' ? 'class="nav-item active"' : '' ?>
+                class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('laporan/cetak_laporan_aki'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Laporan Aki</span>
                 </a>
             </li>
 
-            <li <?= $this->uri->segment(2) == 'laporan/ban' ? 'class="nav-item active"' : '' ?> class="nav-item">
-                <a class="nav-link" href="<?= base_url('laporan/ban'); ?>">
+            <li <?= $this->uri->segment(2) == 'laporan/cetak_laporan_ban' ? 'class="nav-item active"' : '' ?>
+                class="nav-item">
+                <a class="nav-link" href="<?= base_url('laporan/cetak_laporan_ban'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Laporan Ban</span>
                 </a>
-            </li> -->
+            </li>
 
             <?php if (is_admin()) : ?>
 

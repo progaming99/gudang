@@ -126,7 +126,7 @@ class Oli_masuk extends CI_Controller
     public function delete($getId)
     {
         $id = encode_php_tags($getId);
-        if ($this->oli_model->delete('oli_masuk', 'id_oli_masuk', $id)) {
+        if ($this->Oli_model->delete('oli_masuk', 'id_oli_masuk', $id)) {
             $this->session->set_flashdata('flash', 'Data berhasil dihapus.');
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus.', false);

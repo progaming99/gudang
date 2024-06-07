@@ -615,4 +615,30 @@ class Admin_model extends CI_Model
 
 		return $this->db->get('oli_keluar')->result_array();
 	}
+	public function getCetakLaporanSparepart($limit = null, $id_barang = null, $start_date = null, $end_date = null)
+	{
+		$this->db->select('*');
+		$this->db->join('user', 'barang_keluar.user_id = user.id_user', 'left');
+		$this->db->join('barang', 'barang_keluar.barang_id = barang.id_barang', 'left');
+		$this->db->join('armada', 'barang_keluar.id_armada = armada.id_armada', 'left');
+		$this->db->join('barang_masuk', 'barang_keluar.barang_masuk_id = barang_masuk.id_barang_masuk', 'left');
+
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+		if ($id_barang != null) {
+			$this->db->where('id_barang', $id_barang);
+		}
+		if ($start_date != null) {
+			if ($start_date == $end_date) {
+				$this->db->where('barang_keluar.tanggal_keluar', $start_date);
+			} else {
+				$this->db->where('barang_keluar.tanggal_keluar >=', $start_date);
+				$this->db->where('barang_keluar.tanggal_keluar <=', $end_date);
+			}
+		}
+		$this->db->order_by('id_barang_keluar', 'DESC');
+
+		return $this->db->get('barang_keluar')->result_array();
+	}
 }

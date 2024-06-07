@@ -3,25 +3,16 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Riwayat Data Oli Keluar
+                    Cetak Laporan Sparepart
                 </h4>
-            </div>
-
-            <div class="col-auto">
-                <a href="<?= base_url('oli_keluar/tambah') ?>" class="btn btn-sm btn-primary btn-icon-split">
-                    <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span class="text">
-                        Input Oli Keluar
-                    </span>
-                </a>
             </div>
         </div>
     </div>
+    MASIH TAHAP PENGEMBANGAN
+</div>
 
-    <!-- Filter Tanggal -->
-    <div class="row p-3">
+<!-- Filter Tanggal -->
+<!-- <div class="row p-3">
         <div class="col-md-3">
             <div class="form-group">
                 <label for="startDate">Start Date:</label>
@@ -55,6 +46,7 @@
                 <tr>
                     <th>No. </th>
                     <th>No Transaksi</th>
+                    <th>Tanggal Masuk</th>
                     <th>Tanggal Keluar</th>
                     <th>Nama Oli</th>
                     <th>Jumlah Keluar</th>
@@ -69,35 +61,36 @@
             <tbody>
                 <?php
                 $no = 1;
-                if ($oli_keluar) :
-                    foreach ($oli_keluar as $ak) : ?>
+                if ($cetakOli) :
+                    foreach ($cetakOli as $ak) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $ak['id_oli_keluar']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tanggal_keluar'])); ?></td>
+                    <td><?= date('d M Y', strtotime($ak['tanggal_masuk'])); ?></td>
+                    <td><?= date('d M Y', strtotime($ak['tanggal_keluar'])); ?></td>
                     <td><?= $ak['nama_oli']; ?></td>
                     <td><?= $ak['jumlah_keluar']; ?> Liter</td>
                     <td><?= $ak['nama_armada']; ?></td>
                     <td><?= $ak['nama']; ?></td>
                     <!-- Kondisi untuk tombol hapus -->
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <td>
-                        <a href="<?= base_url('oli_keluar/delete/') . $ak['id_oli_keluar'] ?>"
-                            class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
-                    </td>
-                    <?php endif; ?>
-                </tr>
-                <?php endforeach; ?>
-                <?php else : ?>
-                <tr>
-                    <td colspan="100%" class="text-center">
-                        Data Kosong
-                    </td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+<?php if ($role == 'admin' || $role == 'finance'): ?>
+<td>
+    <a href="<?= base_url('oli_keluar/delete/') . $ak['id_oli_keluar'] ?>"
+        class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
+</td>
+<?php endif; ?>
+</tr>
+<?php endforeach; ?>
+<?php else : ?>
+<tr>
+    <td colspan="100%" class="text-center">
+        Data Kosong
+    </td>
+</tr>
+<?php endif; ?>
+</tbody>
+</table>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -109,11 +102,12 @@ function filter() {
     const startDate = $("#startDate").val();
     const endDate = $("#endDate").val();
 
-    window.location.href = `Oli_keluar?start_date=${startDate}&end_date=${endDate}`;
+    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>" +
+        `?start_date=${startDate}&end_date=${endDate}`;
 }
 
 function resetFilter() {
-    window.location.href = 'Oli_keluar'
+    window.location.href = "<?= base_url('laporan/cetak_laporan_oli'); ?>"
 }
 </script>
 
@@ -165,4 +159,4 @@ Swal.fire({
 <?php
         unset($_SESSION['error']);
     } ?>
-</script>
+</script> -->

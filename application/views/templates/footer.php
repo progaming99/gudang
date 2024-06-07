@@ -145,6 +145,7 @@ let hal = '<?= $this->uri->segment(1); ?>';
 
 let satuan = $('#satuan');
 let supplier = $('#supplier');
+
 let supplier_aki = $('#supplier_aki');
 let supplier_aki_keluar = $('#supplier_aki_keluar');
 
@@ -205,19 +206,33 @@ $(document).on('change', '#ban_id', function() {
     });
 });
 
-// $(document).on('change', '#oli_id', function() {
-//     let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
-//     $.getJSON(url, function(data) {
-//         satuan.html(data.nama_satuan);
-//         supplier_oli.val(data.nama_supplier);
-//         supplier_oli_keluar.val(data.nama_supplier);
-//         stok.val(data.stok);
-//         ukuran.val(data.ukuran);
-//         harga.val(data.harga);
-//         total.val(data.stok);
-//         jumlah_aki.focus();
-//     });
-// });
+$(document).on('change', '#oli_id', function() {
+    let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
+    $.getJSON(url, function(data) {
+        satuan.html(data.nama_satuan);
+        supplier_oli.val(data.nama_supplier);
+        supplier_oli_keluar.val(data.nama_supplier);
+        stok.val(data.stok);
+        ukuran.val(data.ukuran);
+        harga.val(data.harga);
+        total.val(data.stok);
+        jumlah_aki.focus();
+    });
+});
+
+$(document).on('change', '#id_oli_masuk', function() {
+    let url = '<?= base_url('oli/getstokoli/'); ?>' + this.value;
+    $.getJSON(url, function(data) {
+        satuan.html(data.nama_satuan);
+        supplier_oli.val(data.nama_supplier);
+        supplier_oli_keluar.val(data.nama_supplier);
+        stok.val(data.stok);
+        ukuran.val(data.ukuran);
+        harga.val(data.harga);
+        total.val(data.stok);
+        jumlah_aki.focus();
+    });
+});
 
 $(document).on('keyup', '#jumlah_masuk', function() {
     let totalStok = parseInt(stok.val()) + parseInt(this.value);

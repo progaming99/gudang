@@ -3,19 +3,9 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Laporan Oli
+                    Cetak Laporan Oli
                 </h4>
             </div>
-
-            <!-- <div class="col-auto">
-                <a href="<?= base_url('laporan/tambah_oli') ?>" class="btn btn-sm btn-primary btn-icon-split">
-                    <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span class="text">
-                        Input Laporan
-                </a>
-            </div> -->
         </div>
     </div>
 
@@ -56,7 +46,7 @@
                     <th>No Transaksi</th>
                     <th>Tanggal Masuk</th>
                     <th>Tanggal Keluar</th>
-                    <th>Jenis Oli</th>
+                    <th>Nama Oli</th>
                     <th>Jumlah Keluar</th>
                     <th>Armada</th>
                     <th>User</th>
@@ -74,8 +64,8 @@
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $ak['id_oli_keluar']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tanggal_masuk'])); ?></td>
-                    <td><?= date('d/m/Y', strtotime($ak['tanggal_keluar'])); ?></td>
+                    <td><?= date('d M Y', strtotime($ak['tanggal_masuk'])); ?></td>
+                    <td><?= date('d M Y', strtotime($ak['tanggal_keluar'])); ?></td>
                     <td><?= $ak['nama_oli']; ?></td>
                     <td><?= $ak['jumlah_keluar']; ?> Liter</td>
                     <td><?= $ak['nama_armada']; ?></td>
@@ -87,7 +77,6 @@
                             class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></a>
                     </td>
                     <?php endif; ?>
-
                 </tr>
                 <?php endforeach; ?>
                 <?php else : ?>

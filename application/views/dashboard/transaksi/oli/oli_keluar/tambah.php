@@ -40,8 +40,13 @@
                             <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select">
                                 <option value="" selected disabled>Pilih Nama</option>
                                 <?php foreach ($oli as $o) : ?>
-                                <option value="<?= $o->id_oli_masuk ?>" data-id="<?= $o->oli_id; ?>">
-                                    <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option>
+                                <option value="<?= $o->id_oli_masuk; ?>" data-id="<?= $o->oli_id; ?>">
+                                    <?= $o->nama_oli; ?> | <?php
+// Misalkan $o->tanggal_masuk berformat 'Y-m-d' (contoh: '2023-06-07')
+$date = new DateTime($o->tanggal_masuk);
+echo $date->format('d-m-Y'); // Output: 07-06-2023
+?></option>
+                                <!-- <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option> -->
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
@@ -81,7 +86,7 @@
                     <div class="col-md-5">
                         <div class="input-group">
                             <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar"
-                                type="number" class="form-control" placeholder="Jumlah Keluar...">
+                                type="number" class="form-control" placeholder="Jumlah Keluar..." min="1">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="satuan">Satuan</span>
                             </div>

@@ -42,7 +42,7 @@ class Oli_keluar extends CI_Controller
 
 		$id_oli_masuk = $this->input->post('id_oli_masuk', true);
 		//CEK STOK OLI
-		$cek_stok = $this->Oli_model->cekStok($id_oli_masuk);
+		$cek_stok = $this->Oli_model->cekStokOli($id_oli_masuk);
 		$stok_oli = $cek_stok->stok;
 		$valid_stok = $stok_oli + 1;
 
@@ -58,11 +58,15 @@ class Oli_keluar extends CI_Controller
 
 	public function tambah()
 	{
+		// Debug input data
+		error_log(print_r($this->input->post(), true));
+
 		$data['title'] = "Oli Keluar";
 		error_reporting(0);
 
 		$this->_validasi();
 		if ($this->form_validation->run() == false) {
+			// Mengambil data oli dengan stok lebih dari 0
 			$data['oli'] = $this->Oli_model->listOliMasuk();
 			$data['armada'] = $this->Oli_model->get('armada');
 
@@ -91,7 +95,7 @@ class Oli_keluar extends CI_Controller
 				'oli_masuk_id' => $this->input->post('id_oli_masuk'),
 				'user_id' => $this->input->post('user_id'),
 				// GA PERLU OLI_ID
-				// 'oli_id' => $this->input->post(''),
+				'oli_id' => $this->input->post('id_oli'),
 				'id_armada' => $this->input->post('id_armada'),
 				'jumlah_keluar' => $this->input->post('jumlah_keluar'),
 				'tanggal_keluar' => $this->input->post('tanggal_keluar'),
@@ -104,10 +108,10 @@ class Oli_keluar extends CI_Controller
 				// UPDATE STOK OLI 
 				$id_oli = $this->input->post('id_oli');
 
-				$cek_stok = $this->Oli_model->cekStok($this->input->post('id_oli_masuk'));
-				$update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');
+				// $cek_stok = $this->Oli_model->cekStok($this->input->post('id_oli_masuk'));
+				// $update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');
 
-				$this->Oli_model->update('oli', 'id_oli', $id_oli, ['stok' => $update_stok]);
+				// $this->Oli_model->update('oli', 'id_oli', $id_oli, ['stok' => $update_stok]);
 
 				$this->session->set_flashdata('flash', 'Data berhasil ditambahkan!');
 				redirect('oli_keluar');

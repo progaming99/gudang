@@ -43,6 +43,16 @@ class Oli_model extends CI_Model
 			->get()->result();
 	}
 
+	// public function listOliMasuk()	
+    // {
+    //     $this->db->select('oli_masuk.id_oli_masuk, oli.nama_oli, oli.stok');
+    //     $this->db->from('oli_masuk');
+    //     $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left');
+    //     $this->db->where('oli.stok >', 0);
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
+
 	public function getOliMasuk($limit = null, $id_oli = null, $start_date = null, $end_date = null)
 	{
 		$this->db->select('*'); // Menghapus alias yang digunakan sebelumnya
@@ -182,7 +192,13 @@ class Oli_model extends CI_Model
 		return $this->db->get($table)->result_array();
 	}
 
-	public function cekStok($id_oli_masuk)
+	public function cekStok($id)
+	{		
+		$this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');
+		return $this->db->get_where('oli', ['id_oli' => $id])->row_array();
+	}
+
+	public function cekStokOli($id_oli_masuk)
 	{
 		return $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left')
 			->join('supplier', 'oli.supplier_id=supplier.id_supplier', 'left')

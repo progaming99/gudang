@@ -41,9 +41,9 @@
                 <tr>
                     <td><?= $no++; ?></td>
                     <td>
-
-                    </td><img width="30" src="<?= base_url() ?>assets/img/avatar/<?= $user['foto'] ?>"
-                        alt="<?= $user['nama']; ?>" class="img-thumbnail rounded-circle">
+                        <img width="30" src="<?= base_url() ?>assets/img/avatar/<?= $user['foto'] ?>"
+                            alt="<?= $user['nama']; ?>" class="img-thumbnail rounded-circle">
+                    </td>
                     <td><?= $user['nama']; ?></td>
                     <td><?= $user['username']; ?></td>
                     <!-- <td><?= $user['email']; ?></td> -->
@@ -94,7 +94,6 @@ Swal.fire({
 
 //tombol hapus
 $('.delete').on('click', function(e) {
-
     e.preventDefault();
     const href = $(this).attr('href');
 
