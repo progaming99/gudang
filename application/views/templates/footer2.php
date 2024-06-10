@@ -1,3 +1,9 @@
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
 <!-- Footer -->
 <footer class="sticky-footer bg-light">
     <div class="container my-auto">
@@ -40,11 +46,10 @@
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Bootstrap core JavaScript-->
-<!-- <script src="<?= base_url(); ?>assets/js/active.js"></script> -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap core JavaScript-->
-<!-- <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.min.js"></script> -->
 <script src="<?= base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -72,9 +77,6 @@
 <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
 
 <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
-
-<!-- Select2 -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
 
@@ -138,7 +140,7 @@
 <script>
     $(document).ready(function() {
         $('.select2').select2({
-            // placeholder: "Pilih Sparepart",
+            placeholder: "Pilih Sparepart",
             allowClear: true
         });
     });
@@ -171,18 +173,6 @@
 
     $(document).on('change', '#barang_id', function() {
         let url = '<?= base_url('barang/getstok/'); ?>' + this.value;
-        $.getJSON(url, function(data) {
-            // satuan.html(data.nama_satuan);
-            supplier.val(data.nama_supplier);
-            stok.val(data.stok);
-            harga.val(data.harga);
-            total.val(data.stok);
-            jumlah.focus();
-        });
-    });
-
-    $(document).on('change', '#id_barang_masuk', function() {
-        let url = '<?= base_url('barang/getstoksparepart/'); ?>' + this.value;
         $.getJSON(url, function(data) {
             // satuan.html(data.nama_satuan);
             supplier.val(data.nama_supplier);

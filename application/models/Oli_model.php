@@ -44,14 +44,14 @@ class Oli_model extends CI_Model
 	}
 
 	// public function listOliMasuk()	
-    // {
-    //     $this->db->select('oli_masuk.id_oli_masuk, oli.nama_oli, oli.stok');
-    //     $this->db->from('oli_masuk');
-    //     $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left');
-    //     $this->db->where('oli.stok >', 0);
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
+	// {
+	//     $this->db->select('oli_masuk.id_oli_masuk, oli.nama_oli, oli.stok');
+	//     $this->db->from('oli_masuk');
+	//     $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left');
+	//     $this->db->where('oli.stok >', 0);
+	//     $query = $this->db->get();
+	//     return $query->result();
+	// }
 
 	public function getOliMasuk($limit = null, $id_oli = null, $start_date = null, $end_date = null)
 	{
@@ -79,7 +79,7 @@ class Oli_model extends CI_Model
 				$this->db->where('oli_masuk.tanggal_masuk <=', $end_date);
 			}
 		}
-		
+
 		// Hitung total harga dengan mengalikan harga_barang dengan jumlah_masuk
 		$this->db->select('(oli.harga * oli_masuk.jumlah_masuk) as total_harga', false);
 		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
@@ -193,7 +193,7 @@ class Oli_model extends CI_Model
 	}
 
 	public function cekStok($id)
-	{		
+	{
 		$this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');
 		return $this->db->get_where('oli', ['id_oli' => $id])->row_array();
 	}

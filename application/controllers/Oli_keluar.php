@@ -106,7 +106,8 @@ class Oli_keluar extends CI_Controller
 
 			if ($insert) {
 				// UPDATE STOK OLI 
-				$id_oli = $this->input->post('id_oli');
+				var_dump($store_data);
+				die();
 
 				// $cek_stok = $this->Oli_model->cekStok($this->input->post('id_oli_masuk'));
 				// $update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');

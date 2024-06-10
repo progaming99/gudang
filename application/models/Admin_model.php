@@ -50,7 +50,7 @@ class Admin_model extends CI_Model
 	//     return $this->db->get_where('ban', ['id_ban' => $id])->row_array();
 	// }
 
-	
+
 	public function update($table, $pk, $id, $data)
 	{
 		$this->db->where($pk, $id);
@@ -92,6 +92,14 @@ class Admin_model extends CI_Model
 		$this->db->join('supplier', 'barang.supplier_id = supplier.id_supplier');
 		$this->db->order_by('id_barang');
 		return $this->db->get('barang')->result_array();
+	}
+
+	function listSparepartMasuk()
+	{
+		return $this->db->from('barang_masuk')
+			->join('barang', 'barang_masuk.barang_id = barang.id_barang')
+			->join('supplier', 'barang.supplier_id = supplier.id_supplier')
+			->get()->result();
 	}
 
 	public function getBan()
@@ -360,7 +368,7 @@ class Admin_model extends CI_Model
 
 	public function chartBarangKeluar($bulan)
 	{
-		$like = 'T-BK-' . date('y') . $bulan;
+		$like = 'T-SK-' . date('y') . $bulan;
 		$this->db->like('id_barang_keluar', $like, 'after');
 		return count($this->db->get('barang_keluar')->result_array());
 	}
@@ -392,6 +400,13 @@ class Admin_model extends CI_Model
 	{
 		$this->db->join('supplier', 'barang.supplier_id=supplier.id_supplier');
 		return $this->db->get_where('barang', ['id_barang' => $id])->row_array();
+	}
+
+	public function cekStokSparepart($id_barang_masuk)
+	{
+		return $this->db->join('barang', 'barang.id_barang = barang_masuk.barang_id', 'left')
+			->join('supplier', 'barang.supplier_id=supplier.id_supplier', 'left')
+			->get_where('barang_masuk', ['id_barang_masuk' => $id_barang_masuk])->row();
 	}
 
 	public function cekStokBan($id)
