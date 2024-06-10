@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Cetak Laporan Sparepart
+                    Cetak Laporan Aki
                 </h4>
             </div>
         </div>
@@ -40,13 +40,17 @@
                 <tr>
                     <th>No. </th>
                     <th>No Transaksi</th>
-                    <th>Tanggal Masuk</th>
-                    <th>Tanggal Keluar</th>
-                    <th>Sparepart</th>
+                    <th>Tgl Masuk</th>
+                    <th>Tgl Keluar</th>
+                    <th>Merk</th>
                     <th>Keluar</th>
                     <th>Armada</th>
                     <th>Supir</th>
                     <th>Montir</th>
+                    <th>Tgl Psg Baru</th>
+                    <th>Tgl Psg Lama</th>
+                    <th>Lama Pakai Baru</th>
+                    <th>Lama Pakai Tahun</th>
                     <th>User</th>
                     <th>Aksi</th>
                 </tr>
@@ -65,9 +69,11 @@
                     <td>x</td>
                     <td>x</td>
                     <td>x</td>
-                    <td>x
-
-                    </td>
+                    <td>x</td>
+                    <td>x</td>
+                    <td>x</td>
+                    <td>x</td>
+                    <td>x</td>
                 </tr>
 
 

@@ -44,6 +44,69 @@ class Laporan extends CI_Controller
 	// 	}
 	// }
 
+	public function cetak_laporan_sparepart()
+	{
+		$data['title'] = "Laporan Sparepart";
+
+		// Cek peran pengguna saat ini
+		$id_user = $this->session->userdata('id_user');
+		$currentRole = $this->admin->get_user_role_by_id($id_user);
+
+		$data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
+
+		$start_date = $this->input->get('start_date') ?? null;
+		$end_date = $this->input->get('end_date') ?? null;
+
+		// $data['cetakSparepart'] = $this->admin->getCetakLaporanSparepart(null, null, $start_date, $end_date);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('dashboard/laporan/sparepart/index.php', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function cetak_laporan_aki()
+	{
+		$data['title'] = "Laporan Aki";
+
+		// Cek peran pengguna saat ini
+		$id_user = $this->session->userdata('id_user');
+		$currentRole = $this->admin->get_user_role_by_id($id_user);
+
+		$data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
+
+		$start_date = $this->input->get('start_date') ?? null;
+		$end_date = $this->input->get('end_date') ?? null;
+
+		// $data['cetakSparepart'] = $this->admin->getCetakLaporanSparepart(null, null, $start_date, $end_date);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('dashboard/laporan/aki/index.php', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function cetak_laporan_ban()
+	{
+		$data['title'] = "Laporan Ban";
+
+		// Cek peran pengguna saat ini
+		$id_user = $this->session->userdata('id_user');
+		$currentRole = $this->admin->get_user_role_by_id($id_user);
+
+		$data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
+
+		$start_date = $this->input->get('start_date') ?? null;
+		$end_date = $this->input->get('end_date') ?? null;
+
+		// $data['cetakSparepart'] = $this->admin->getCetakLaporanSparepart(null, null, $start_date, $end_date);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('dashboard/laporan/ban/index.php', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
 	public function cetak_laporan_oli()
 	{
 		$data['title'] = "Laporan Oli";
@@ -64,26 +127,8 @@ class Laporan extends CI_Controller
 		$this->load->view('dashboard/laporan/oli/index.php', $data);
 		$this->load->view('templates/footer', $data);
 	}
-	public function cetak_laporan_sparepart()
-	{
-		$data['title'] = "Laporan Sparepart";
 
-		// Cek peran pengguna saat ini
-		$id_user = $this->session->userdata('id_user');
-		$currentRole = $this->admin->get_user_role_by_id($id_user);
 
-		$data['is_admin_or_finance'] = ($currentRole == 'admin' || $currentRole == 'finance');
-
-		$start_date = $this->input->get('start_date') ?? null;
-		$end_date = $this->input->get('end_date') ?? null;
-
-		$data['cetakSparepart'] = $this->admin->getCetakLaporanSparepart(null, null, $start_date, $end_date);
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('dashboard/laporan/Sparepart/index.php', $data);
-		$this->load->view('templates/footer', $data);
-	}
 
 	// public function tambah_oli()
 	// {

@@ -55,17 +55,17 @@
             <tr>
                 <th>No. </th>
                 <th>No Transaksi</th>
-                <th>Tanggal Keluar</th>
-                <th>Merk Ban</th>
+                <th>Tgl Keluar</th>
+                <th>Merk</th>
                 <th>Jenis Ban</th>
-                <th>Ukuran Ban</th>
-                <th>Jumlah Keluar</th>
-                <th>Tanggal Pasang</th>
-                <th>Tanggal Ganti</th>
+                <th>Ukuran</th>
+                <th>Jml Keluar</th>
+                <th>Tgl Pasang</th>
+                <th>Tgl Ganti</th>
                 <th>Rencana Ganti</th>
-                <th>Nomor Posisi</th>
-                <th>Nomor Seri Baru</th>
-                <th>Nomor Seri Lama</th>
+                <th>No Posisi</th>
+                <th>No Seri Baru</th>
+                <th>No Seri Lama</th>
                 <th>Armada</th>
                 <th>Supir</th>
                 <th>Montir</th>

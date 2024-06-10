@@ -3,19 +3,9 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Data Aki
+                    Stok Aki Gudang
                 </h4>
             </div>
-            <!-- <div class="col-auto">
-                <a href="<?= base_url('Aki/tambah'); ?>" class="btn btn-sm btn-primary btn-icon-split">
-                    <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span class="text">
-                        Tambah Aki
-                    </span>
-                </a>
-            </div> -->
         </div>
     </div>
 

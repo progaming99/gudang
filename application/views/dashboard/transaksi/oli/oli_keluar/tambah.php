@@ -39,15 +39,22 @@
                         <div class="input-group">
                             <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select">
                                 <option value="" selected disabled>Pilih Nama</option>
-                                <?php foreach ($oli as $o) : ?>
+                                <?php 
+                                $nama_oli_terlihat = [];
+                                foreach ($oli as $o) : 
+                                    if (!in_array($o->nama_oli, $nama_oli_terlihat)):
+                                        $nama_oli_terlihat[] = $o->nama_oli;
+                                ?>
                                 <option value="<?= $o->id_oli_masuk; ?>" data-id="<?= $o->oli_id; ?>">
                                     <?= $o->nama_oli; ?> | <?php
-// Misalkan $o->tanggal_masuk berformat 'Y-m-d' (contoh: '2023-06-07')
-$date = new DateTime($o->tanggal_masuk);
-echo $date->format('d-m-Y'); // Output: 07-06-2023
-?></option>
+                                    $date = new DateTime($o->tanggal_masuk);
+                                    echo $date->format('d-m-Y'); // Output: 07-06-2023
+                                    ?></option>
                                 <!-- <?= $o->nama_oli . ' | ' . $o->id_oli_masuk?></option> -->
-                                <?php endforeach; ?>
+                                <?php 
+                                endif;
+                            endforeach; 
+                            ?>
                             </select>
                             <div class="input-group-append">
                                 <a class="btn btn-primary" href="<?= base_url('oli/tambah'); ?>"><i
@@ -57,6 +64,7 @@ echo $date->format('d-m-Y'); // Output: 07-06-2023
                         <?= form_error('id_oli_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
+
                 <!-- ID OLI  -->
                 <input type="hidden" name="id_oli" id="id_oli" value="">
 

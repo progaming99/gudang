@@ -34,28 +34,29 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="supplier_id">Supplier</label>
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="barang_id">Sparepart</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="supplier_id" id="supplier_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Supplier</option>
-                                <?php foreach ($supplier as $s) : ?>
-                                <option <?= set_select('supplier_id', $s['id_supplier']) ?>
-                                    value="<?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
+                            <select name="barang_id" id="barang_id" class="custom-select select2">
+                                <option value="" selected disabled>Pilih Sparepart</option>
+                                <?php foreach ($barang as $b) : ?>
+                                <option <?= $this->uri->segment(3) == $b['id_barang'] ? 'selected' : '';  ?>
+                                    <?= set_select('barang_id', $b['id_barang']) ?> value="<?= $b['id_barang'] ?>">
+                                    <?= $b['id_barang'] . ' | ' . $b['nama_barang'] ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('supplier/tambah'); ?>"><i
+                                <a class="btn btn-primary" href="<?= base_url('barang/tambah'); ?>"><i
                                         class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('supplier_id', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('barang_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                </div> -->
+                </div>
 
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="barang_id">Sparepart</label>
                     <div class="col-md-5">
                         <div class="input-group">
@@ -75,7 +76,7 @@
                         </div>
                         <?= form_error('barang_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="harga">Harga</label>
@@ -112,20 +113,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="total_stok">Total Stok</label>
-                    <div class="col-md-5">
-                        <input readonly="readonly" id="total_stok" type="number" class="form-control">
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="total_harga">Total Harga</label>
-                    <div class="col-md-5">
-                        <input readonly="readonly" id="total_harga" type="number" class="form-control">
-                    </div>
-                </div> -->
-
                 <div class="row form-group">
                     <div class="col offset-md-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -133,34 +120,24 @@
                     </div>
                 </div>
                 <?= form_close(); ?>
-
-                <!-- Add a table to display the item's details -->
-                <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nama Barang</th>
-                            <th>Jumlah Masuk</th>
-                            <th>Total Harga</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td><?= $barang['nama_barang']; ?></td>
-                            <td><?= $input['jumlah_masuk']; ?></td>
-                            <td><?= $input['total_harga']; ?></td>
-                        </tr>
-                    </tbody>
-                </table> -->
-
             </div>
         </div>
     </div>
 </div>
 
+
+<!-- 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+$(document).ready(function() {
+    $('.select2').select2({
+        placeholder: "Pilih Sparepart",
+        allowClear: true
+    });
+});
+</script>
 
 <script>
 <?php

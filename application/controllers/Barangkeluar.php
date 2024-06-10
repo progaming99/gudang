@@ -77,8 +77,10 @@ class Barangkeluar extends CI_Controller
         error_reporting(0);
 
         $this->_validasi();
-        if ($this->form_validation->run() == false) {
-            $data['barang'] = $this->Admin_model->get('barang', null, ['stok >' => 0]);
+        if ($this->form_validation->run() == false) {      
+            // Mengambil data oli dengan stok lebih dari 0
+			$data['sparepart'] = $this->Admin_model->listSparepartMasuk();      
+            // $data['barang'] = $this->Admin_model->get('barang', null, ['stok >' => 0]);
             $data['armada'] = $this->Admin_model->get('armada');
             $data['supir'] = $this->Admin_model->get('supir');
             $data['montir'] = $this->Admin_model->get('montir');
@@ -87,8 +89,6 @@ class Barangkeluar extends CI_Controller
             $kode = 'T-SK-' . date('ymd');
             $kode_terakhir = $this->Admin_model->getMax('barang_keluar', 'id_barang_keluar', $kode);
            
-            // $kode_tambah = substr($kode_terakhir, -5, 5);
-            // $kode_tambah++;
             if ($kode_terakhir !== null) {
                 $kode_tambah = substr($kode_terakhir, -5, 5);
                 $kode_tambah++;

@@ -14,55 +14,57 @@
         // Menampilkan nilai peran (role) pengguna
     ?>
 
-    <div class="table-responsive">
-        <table class="table table-striped w-100 dt-responsive nowrap" id="dataTable">
-            <thead>
-                <tr>
-                    <th>No. </th>
-                    <th>Nomor Oli</th>
-                    <th>Jenis</th>
-                    <th>Supplier</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <th>Aksi</th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    <div class="card-body">
+        <div class="">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No. </th>
+                        <th>ID Oli</th>
+                        <th>Nama Oli</th>
+                        <th>Supplier</th>
+                        <th>Harga</th>
+                        <th>Stok</th>
+                        <?php if ($role == 'admin' || $role == 'finance'): ?>
+                        <th>Aksi</th>
+                        <?php endif; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                 $no = 1;
                 if ($oli) :
                     foreach ($oli as $o) :
                         ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $o->id_oli; ?></td>
-                    <td><?= $o->nama_oli; ?></td>
-                    <td><?= $o->nama_supplier; ?></td>
-                    <td>Rp <?= number_format($o->harga, 0, '.', ','); ?></td>
-                    <td><?= $o->stok; ?> - Liter</td>
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $o->id_oli; ?></td>
+                        <td><?= $o->nama_oli; ?></td>
+                        <td><?= $o->nama_supplier; ?></td>
+                        <td>Rp <?= number_format($o->harga, 0, '.', ','); ?></td>
+                        <td><?= $o->stok; ?> - Liter</td>
+                        <?php if ($role == 'admin' || $role == 'finance'): ?>
 
-                    <td>
-                        <a href="<?= base_url('oli/edit/') . $o->id_oli; ?>"
-                            class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                        <td>
+                            <a href="<?= base_url('oli/edit/') . $o->id_oli; ?>"
+                                class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
 
-                        <a href="<?= base_url('oli/delete/') . $o->id_oli; ?>"
-                            class="btn btn-danger btn-circle btn-sm delete"><i class="fa fa-trash"></i></a>
-                    </td>
+                            <a href="<?= base_url('oli/delete/') . $o->id_oli; ?>"
+                                class="btn btn-danger btn-circle btn-sm delete"><i class="fa fa-trash"></i></a>
+                        </td>
+                        <?php endif; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            Data Kosong
+                        </td>
+                    </tr>
                     <?php endif; ?>
-                </tr>
-                <?php endforeach; ?>
-                <?php else : ?>
-                <tr>
-                    <td colspan="7" class="text-center">
-                        Data Kosong
-                    </td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

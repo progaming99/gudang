@@ -56,9 +56,9 @@
                     <th>No. </th>
                     <th>No Transaksi</th>
                     <th>Tanggal Keluar</th>
-                    <th>Nama Barang</th>
+                    <th>Sparepart</th>
                     <th>Supplier</th>
-                    <th>Jumlah Keluar</th>
+                    <th>Keluar</th>
                     <th>Armada</th>
                     <th>Supir</th>
                     <th>Montir</th>

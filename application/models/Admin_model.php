@@ -50,6 +50,7 @@ class Admin_model extends CI_Model
 	//     return $this->db->get_where('ban', ['id_ban' => $id])->row_array();
 	// }
 
+	
 	public function update($table, $pk, $id, $data)
 	{
 		$this->db->where($pk, $id);
@@ -88,10 +89,7 @@ class Admin_model extends CI_Model
 
 	public function getBarang()
 	{
-		$this->db->join('jenis', 'barang.jenis_id = jenis.id_jenis');
-		$this->db->join('satuan', 'barang.satuan_id = satuan.id_satuan');
 		$this->db->join('supplier', 'barang.supplier_id = supplier.id_supplier');
-		// $this->db->join('barang_masuk bm', 'b.barang_masuk_id = bm.id_barang_masuk');
 		$this->db->order_by('id_barang');
 		return $this->db->get('barang')->result_array();
 	}
@@ -112,7 +110,6 @@ class Admin_model extends CI_Model
 		$this->db->join('user', 'barang_masuk.user_id = user.id_user');
 		$this->db->join('barang', 'barang_masuk.barang_id = barang.id_barang');
 		$this->db->join('supplier', 'barang.supplier_id = supplier.id_supplier');
-		$this->db->join('satuan', 'barang.satuan_id = satuan.id_satuan');
 		// $this->db->order_by('id_barang_masuk');
 
 		if ($limit != null) {
@@ -135,7 +132,6 @@ class Admin_model extends CI_Model
 		$this->db->order_by('barang_masuk.id_barang_masuk', 'DESC');
 
 		// Hitung total harga dengan mengalikan harga_barang dengan jumlah_masuk
-		// $this->db->select('(barang.harga * barang_masuk.jumlah_masuk) as total_harga', false);
 		$this->db->select('(barang.harga * barang_masuk.jumlah_masuk) as total_harga_barang_masuk', false);
 
 		return $this->db->get()->result_array();
@@ -394,7 +390,6 @@ class Admin_model extends CI_Model
 
 	public function cekStok($id)
 	{
-		$this->db->join('satuan', 'barang.satuan_id=satuan.id_satuan');
 		$this->db->join('supplier', 'barang.supplier_id=supplier.id_supplier');
 		return $this->db->get_where('barang', ['id_barang' => $id])->row_array();
 	}

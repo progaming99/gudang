@@ -55,16 +55,16 @@
             <tr>
                 <th>No. </th>
                 <th>No Transaksi</th>
-                <th>Tanggal Keluar</th>
+                <th>Tgl Keluar</th>
                 <th>Merk</th>
-                <th>Jumlah Keluar</th>
+                <th>Keluar</th>
                 <th>Armada</th>
                 <th>Supir</th>
                 <th>Montir</th>
-                <th>Tanggal Pasang Baru</th>
-                <th>Tanggal Pasang Lama</th>
-                <th>Lama Pemakaian Hari</th>
-                <th>Lama Pemakaian Tahun</th>
+                <th>Tgl Psg Baru</th>
+                <th>Tgl Psg Lama</th>
+                <th>Lama Pakai Hari</th>
+                <th>Lama Pakai Tahun</th>
                 <!-- <th>Masalah</th>
                     <th>Keterangan</th> -->
                 <th>User</th>

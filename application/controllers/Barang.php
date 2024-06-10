@@ -35,8 +35,6 @@ class Barang extends CI_Controller
     private function _validasi()
     {
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|trim');
-        $this->form_validation->set_rules('jenis_id', 'Jenis Barang', 'required');
-        $this->form_validation->set_rules('satuan_id', 'Satuan Barang', 'required');
     }
 
     public function tambah()
@@ -63,17 +61,9 @@ class Barang extends CI_Controller
             $this->load->view('dashboard/barang/barang/tambah', $data);
             $this->load->view('templates/footer', $data);
         } else {
-            $input = $this->input->post(null, true);
-
-            // Hitung total_harga
-            // $input['total_harga'] = $input['harga'] * $input['stok'];
-        
-            // var_dump($input);
-            // die();
-            
+            $input = $this->input->post(null, true);            
              // Tambahkan var_dump di sini
             $insert = $this->admin->insert('barang', $input);
-
             if ($insert) {
                 $this->session->set_flashdata('flash', 'Master sparepart berhasil di tambahkan!');
                 echo '<script>window.history.go(-2);</script>';

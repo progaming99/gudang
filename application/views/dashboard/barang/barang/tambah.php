@@ -31,26 +31,6 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="jenis_id">Jenis Sparepart</label>
-                    <div class="col-md-9">
-                        <div class="input-group">
-                            <select name="jenis_id" id="jenis_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Jenis Barang</option>
-                                <?php foreach ($jenis as $j) : ?>
-                                <option <?= set_select('jenis_id', $j['id_jenis']) ?> value="<?= $j['id_jenis'] ?>">
-                                    <?= $j['nama_jenis'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('jenis/tambah'); ?>"><i
-                                        class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <?= form_error('jenis_id', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div>
-
-                <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="supplier_id">Supplier</label>
                     <div class="col-md-9">
                         <div class="input-group">
@@ -79,25 +59,6 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="satuan_id">Satuan Sparepart</label>
-                    <div class="col-md-9">
-                        <div class="input-group">
-                            <select name="satuan_id" id="satuan_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Satuan Barang</option>
-                                <?php foreach ($satuan as $s) : ?>
-                                <option <?= set_select('satuan_id', $s['id_satuan']) ?> value="<?= $s['id_satuan'] ?>">
-                                    <?= $s['nama_satuan'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('satuan/tambah'); ?>"><i
-                                        class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <?= form_error('satuan_id', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div>
                 <div class="row form-group">
                     <div class="col-md-9 offset-md-3">
                         <button type="submit" class="btn btn-primary">Simpan</button>

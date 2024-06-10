@@ -55,11 +55,11 @@
             <tr>
                 <th>No. </th>
                 <th>No Transaksi</th>
-                <th>Tanggal Masuk</th>
+                <th>Tgl Masuk</th>
                 <th>Supplier</th>
-                <th>Merk Ban</th>
-                <th>Ukuran Ban</th>
-                <th>Jumlah Masuk</th>
+                <th>Merk</th>
+                <th>Ukuran</th>
+                <th>Masuk</th>
                 <th>Harga</th>
                 <th>Jumlah Harga</th>
                 <th>User</th>

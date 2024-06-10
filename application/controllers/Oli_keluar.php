@@ -71,7 +71,7 @@ class Oli_keluar extends CI_Controller
 			$data['armada'] = $this->Oli_model->get('armada');
 
 			// Mendapatkan dan men-generate kode transaksi barang keluar
-			$kode = 'T-OL-' . date('ymd');
+			$kode = 'T-OK-' . date('ymd');
 			$kode_terakhir = $this->Oli_model->getMax('oli_keluar', 'id_oli_keluar', $kode);
 
 			if ($kode_terakhir !== null) {

@@ -62,7 +62,6 @@ class Aki_model extends CI_Model
 
         $this->db->order_by('aki_masuk.id_aki_masuk', 'DESC');
 
-        // Hitung total harga dengan mengalikan harga_barang dengan jumlah_masuk
         $this->db->select('(aki.harga * aki_masuk.jumlah_masuk) as total_harga', false);
 
         return $this->db->get()->result_array();

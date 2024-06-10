@@ -34,34 +34,6 @@ class Aki_masuk extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    // public function filter()
-    // {
-    //     // Metode ini akan menangani permintaan AJAX untuk filter tanggal
-    //     // Anda dapat menggunakan kode yang sama dengan di atas untuk memfilter data
-    //     // dan mengembalikan data yang difilter dalam format JSON
-    //     $dateRange = $this->input->get('date_range');
-    //     if (!empty($dateRange)) {
-    //         list($start_date, $end_date) = explode(' - ', $dateRange);
-    //         $range = [
-    //             'mulai' => date('Y-m-d', strtotime($start_date)),
-    //             'akhir' => date('Y-m-d', strtotime($end_date)),
-    //         ];
-    //         $filteredData = $this->Aki_model->getAkiMasuk(null, null, $range);
-    //     } else {
-    //         // Jika tidak ada filter, kembalikan semua data
-    //         $filteredData = $this->Aki_model->getAkiMasuk();
-    //     }
-
-    //     // Kembalikan data dalam format JSON
-    //     $jsonData = json_encode($filteredData);
-
-    //     // Atur header Content-Type
-    //     header('Content-Type: application/json');
-
-    //     // Mengirimkan respons JSON
-    //     echo $jsonData;
-    // }
-
     private function _validasi()
     {
         $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required|trim');
@@ -77,7 +49,6 @@ class Aki_masuk extends CI_Controller
 
         $this->_validasi();
         if ($this->form_validation->run() == false) {
-            // $data['supplier'] = $this->Aki_model->get('supplier');
             $data['aki'] = $this->Aki_model->get('aki');
 
             // Mendapatkan dan men-generate kode transaksi aki masuk

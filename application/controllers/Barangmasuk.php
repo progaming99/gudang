@@ -32,26 +32,6 @@ class Barangmasuk extends CI_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	// public function filter()
-	// {
-	// 	$this->load->model('Barang_masuk_model', 'BarangMasuk');
-
-	// 	$barangMasuk = $this->BarangMasuk->filterBarangMasuk();
-	// 	if (!$barangMasuk) {
-	// 		$result = [
-	// 			'status' => false,
-	// 			'msg' => 'barang masuk kosong',
-	// 		];
-	// 	} else {
-	// 		$result = [
-	// 			'status' => true,
-	// 			'data' => $barangMasuk
-	// 		];
-	// 	}
-	// 	echo json_encode($result);
-	// }
-
-
 	private function _validasi()
 	{
 		$this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required|trim');
@@ -67,7 +47,6 @@ class Barangmasuk extends CI_Controller
 
 		$this->_validasi();
 		if ($this->form_validation->run() == false) {
-			// $data['supplier'] = $this->admin->get('supplier');
 			$data['barang'] = $this->admin->get('barang');
 
 			// Mendapatkan dan men-generate kode transaksi barang masuk
@@ -96,8 +75,6 @@ class Barangmasuk extends CI_Controller
 			if ($barang) {
 				$total_harga = $barang['harga'] * $input['jumlah_masuk'];
 				$input['total_harga'] = $total_harga;
-
-
 
 				$insert = $this->admin->insert('barang_masuk', $input);
 

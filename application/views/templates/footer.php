@@ -140,6 +140,15 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+$(document).ready(function() {
+    $('.select2').select2({
+        placeholder: "Pilih Sparepart",
+        allowClear: true
+    });
+});
+</script>
+
 <script type="text/javascript">
 let hal = '<?= $this->uri->segment(1); ?>';
 
@@ -168,7 +177,7 @@ let jumlah_oli = hal == 'oli_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
 $(document).on('change', '#barang_id', function() {
     let url = '<?= base_url('barang/getstok/'); ?>' + this.value;
     $.getJSON(url, function(data) {
-        satuan.html(data.nama_satuan);
+        // satuan.html(data.nama_satuan);
         supplier.val(data.nama_supplier);
         stok.val(data.stok);
         harga.val(data.harga);

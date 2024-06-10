@@ -6,16 +6,6 @@
                     Stok Sparepart Gudang
                 </h4>
             </div>
-            <!-- <div class="col-auto">
-                <a href="<?= base_url('Barang/tambah') ?>" class="btn btn-sm btn-primary btn-icon-split">
-                    <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span class="text">
-                        Tambah Barang
-                    </span>
-                </a>
-            </div> -->
         </div>
     </div>
 
@@ -24,56 +14,56 @@
         // Menampilkan nilai peran (role) pengguna
     ?>
 
-    <div class="table-responsive">
-        <table class="table table-striped w-100 dt-responsive nowrap" id="dataTable">
-            <thead>
-                <tr>
-                    <th>No. </th>
-                    <th>ID Sparepart</th>
-                    <th>Nama</th>
-                    <th>Jenis</th>
-                    <th>Supplier</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <th>Aksi</th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    <div class="card-body">
+        <div class="">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No. </th>
+                        <th>ID Sparepart</th>
+                        <th>Nama</th>
+                        <th>Supplier</th>
+                        <th>Harga</th>
+                        <th>Stok</th>
+                        <?php if ($role == 'admin' || $role == 'finance'): ?>
+                        <th>Aksi</th>
+                        <?php endif; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                 $no = 1;
                 if ($barang) :
                     foreach ($barang as $b) :
                         ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $b['id_barang']; ?></td>
-                    <td><?= $b['nama_barang']; ?></td>
-                    <td><?= $b['nama_jenis']; ?></td>
-                    <td><?= $b['nama_supplier']; ?></td>
-                    <td>Rp <?= number_format($b['harga'], 0, '.', ','); ?></td>
-                    <td><?= $b['stok']; ?> - <?= $b['nama_satuan']; ?></td>
-                    <?php if ($role == 'admin' || $role == 'finance'): ?>
-                    <td>
-                        <a href="<?= base_url('barang/edit/') . $b['id_barang'] ?>"
-                            class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $b['id_barang']; ?></td>
+                        <td><?= $b['nama_barang']; ?></td>
+                        <td><?= $b['nama_supplier']; ?></td>
+                        <td>Rp <?= number_format($b['harga'], 0, '.', ','); ?></td>
+                        <td><?= $b['stok']; ?></td>
+                        <?php if ($role == 'admin' || $role == 'finance'): ?>
+                        <td>
+                            <a href="<?= base_url('barang/edit/') . $b['id_barang'] ?>"
+                                class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
 
-                        <a href="<?= base_url('barang/delete/') . $b['id_barang'] ?>"
-                            class="btn btn-danger btn-circle btn-sm delete"><i class="fa fa-trash"></i></a>
-                    </td>
+                            <a href="<?= base_url('barang/delete/') . $b['id_barang'] ?>"
+                                class="btn btn-danger btn-circle btn-sm delete"><i class="fa fa-trash"></i></a>
+                        </td>
+                        <?php endif; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            Data Kosong
+                        </td>
+                    </tr>
                     <?php endif; ?>
-                </tr>
-                <?php endforeach; ?>
-                <?php else : ?>
-                <tr>
-                    <td colspan="7" class="text-center">
-                        Data Kosong
-                    </td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
