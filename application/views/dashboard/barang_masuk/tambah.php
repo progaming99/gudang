@@ -56,28 +56,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="barang_id">Sparepart</label>
-                    <div class="col-md-5">
-                        <div class="input-group">
-                            <select name="barang_id" id="barang_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Sparepart
-                                </option>
-                                <?php foreach ($barang as $b) : ?>
-                                <option <?= $this->uri->segment(3) == $b['id_barang'] ? 'selected' : '';  ?>
-                                    <?= set_select('barang_id', $b['id_barang']) ?> value="<?= $b['id_barang'] ?>">
-                                    <?= $b['id_barang'] . ' | ' . $b['nama_barang'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('barang/tambah'); ?>"><i
-                                        class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <?= form_error('barang_id', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div> -->
-
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="harga">Harga</label>
                     <div class="col-md-5">
