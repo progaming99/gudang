@@ -55,7 +55,7 @@
                         <?= form_error('barang_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
-
+                123321
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="harga">Harga</label>
                     <div class="col-md-5">
