@@ -38,6 +38,7 @@
                         <div class="input-group">
                             <select name="id_oli_masuk" id="id_oli_masuk" class="custom-select select2">
                                 <option value="" selected disabled>Pilih Nama</option>
+<<<<<<< HEAD
                                 <?php
                                 $nama_oli_terlihat = [];
                                 foreach ($oli as $o) :
@@ -53,6 +54,12 @@
                                     endif;
                                 endforeach;
                                 ?>
+=======
+                                <?php foreach ($oli as $o) : ?>
+                                    <option value="<?= $o->id_oli_masuk; ?>" data-id="<?= $o->oli_id; ?>">
+                                        <?= $o->oli_id . ' | ' . $o->nama_oli; ?></option>
+                                <?php endforeach; ?>
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
                             </select>
                             <div class="input-group-append">
                                 <a class="btn btn-primary" href="<?= base_url('oli/tambah'); ?>"><i class="fa fa-plus"></i></a>
@@ -90,7 +97,11 @@
                     <label class="col-md-4 text-md-right" for="jumlah_keluar">Jumlah Keluar</label>
                     <div class="col-md-5">
                         <div class="input-group">
+<<<<<<< HEAD
                             <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar..." min="1">
+=======
+                            <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
                             <div class="input-group-append">
                                 <span class="input-group-text" id="satuan">Satuan</span>
                             </div>
@@ -100,10 +111,10 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="id_armada">Armada</label>
+                    <label class="col-md-4 text-md-right" for="armada_id">Armada</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <select name="id_armada" id="id_armada" class="custom-select">
+                            <select name="armada_id" id="armada_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Armada</option>
                                 <?php foreach ($armada as $ar) : ?>
                                     <option value="<?= $ar['id_armada'] ?>">
@@ -114,7 +125,7 @@
                                 <a class="btn btn-primary" href="<?= base_url('armada/tambah'); ?>"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        <?= form_error('id_armada', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('armada_id', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -134,8 +145,12 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+<<<<<<< HEAD
     <?php
     if ($this->session->flashdata('error')) { ?>
+=======
+    <?php if ($this->session->flashdata('error')) { ?>
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
         var isi = <?php echo json_encode($this->session->flashdata('error')) ?>;
         Swal.fire({
             title: "Gagal",
@@ -144,14 +159,18 @@
             button: false,
             timer: 5000,
         });
+<<<<<<< HEAD
     <?php
         unset($_SESSION['error']);
+=======
+    <?php unset($_SESSION['error']);
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
     } ?>
 </script>
 
-
 <script>
     $(document).on('change', '#id_oli_masuk', function() {
+<<<<<<< HEAD
         // Ambil nilai dari atribut data-id
         let selectedOption = $(this).find('option:selected');
         let dataId = selectedOption.data('id');
@@ -169,6 +188,22 @@
             harga.val(data.harga);
             total.val(data.stok);
             jumlah_aki.focus();
+=======
+        let selectedOption = $(this).find('option:selected');
+        let value = selectedOption.val();
+        let [idOliMasuk, oliId] = value.split('|');
+
+        // Set the hidden input value for id_oli
+        $('#id_oli').val(oliId);
+
+        let url = '<?= base_url('oli/getstok/'); ?>' + idOliMasuk;
+        $.getJSON(url, function(data) {
+            $('#satuan').text(data.nama_satuan);
+            $('#supplier_oli_keluar').val(data.nama_supplier);
+            $('#stok').val(data.stok);
+            $('#harga').val(data.harga);
+            // Additional processing as needed
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
         });
     });
 </script>

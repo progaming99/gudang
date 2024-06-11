@@ -37,8 +37,13 @@
                     <label class="col-md-4 text-md-right" for="oli_id">Nama Oli</label>
                     <div class="col-md-5">
                         <div class="input-group">
+<<<<<<< HEAD
                             <select name="oli_id" id="oli_id" class="custom-select select2">
                                 <option value="" selected disabled>Pilih Nama</option>
+=======
+                            <select name="oli_id" id="oli_id" class="custom-select">
+                                <option value="" selected disabled>Pilih Oli</option>
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
                                 <?php foreach ($oli as $oli) : ?>
                                     <option <?= $this->uri->segment(3) == $oli['id_oli'] ? 'selected' : '';  ?> <?= set_select('oli_id', $oli['id_oli']) ?> value="<?= $oli['id_oli'] ?>">
                                         <?= $oli['id_oli'] . ' | ' . $oli['nama_oli'] ?></option>
