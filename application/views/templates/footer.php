@@ -75,9 +75,12 @@
 <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- Select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
+=======
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
@@ -138,6 +141,7 @@
         table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 </script>
 
 <script>
@@ -149,6 +153,8 @@
     });
 =======
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
+=======
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 </script>
 
 <script type="text/javascript">
@@ -156,6 +162,7 @@
 
     let satuan = $('#satuan');
     let supplier = $('#supplier');
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     let supplier_aki = $('#supplier_aki');
@@ -175,6 +182,26 @@
     let jumlah = hal == 'barangmasuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
     let jumlah_aki = hal == 'aki_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
     let jumlah_ban = hal == 'ban_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
+=======
+    let supplier_aki = $('#supplier_aki');
+    let supplier_aki_keluar = $('#supplier_aki_keluar');
+
+    let supplier_ban = $('#supplier_ban');
+    let supplier_ban_keluar = $('#supplier_ban_keluar');
+
+    let supplier_oli = $('#supplier_oli');
+    let supplier_oli_keluar = $('#supplier_oli_keluar');
+
+    let harga = $('#harga');
+    let kondisi = $('#kondisi');
+    let stok = $('#stok');
+    let ukuran = $('#ukuran');
+    let total = $('#total_stok');
+    let jumlah = hal == 'barangmasuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
+    let jumlah_aki = hal == 'aki_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
+    let jumlah_ban = hal == 'ban_masuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
+
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
     let supplier_aki = $('#supplier_aki');
     let supplier_aki_keluar = $('#supplier_aki_keluar');
@@ -201,7 +228,11 @@
         let url = '<?= base_url('barang/getstok/'); ?>' + this.value;
         $.getJSON(url, function(data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             // satuan.html(data.nama_satuan);
+=======
+            satuan.html(data.nama_satuan);
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
             satuan.html(data.nama_satuan);
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
@@ -213,6 +244,7 @@
         });
     });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     $(document).on('change', '#id_barang_masuk', function() {
         let url = '<?= base_url('barang/getstoksparepart/'); ?>' + this.value;
@@ -226,6 +258,17 @@
         });
     });
 
+    $(document).on('change', '#aki_id', function() {
+        let url = '<?= base_url('aki/getstok/'); ?>' + this.value;
+        $.getJSON(url, function(data) {
+            satuan.html(data.nama_satuan);
+            supplier_aki.val(data.nama_supplier);
+            supplier_aki_keluar.val(data.nama_supplier);
+            stok.val(data.stok);
+            harga.val(data.harga);
+            supplier.val(data.supplier);
+            kondisi.val(data.kondisi);
+=======
     $(document).on('change', '#aki_id', function() {
         let url = '<?= base_url('aki/getstok/'); ?>' + this.value;
         $.getJSON(url, function(data) {
@@ -267,6 +310,34 @@
         });
     });
 
+<<<<<<< HEAD
+    $(document).on('change', '#ban_id', function() {
+        let url = '<?= base_url('ban/getstok/'); ?>' + this.value;
+        $.getJSON(url, function(data) {
+            satuan.html(data.nama_satuan);
+            supplier_ban.val(data.nama_supplier);
+            supplier_ban_keluar.val(data.nama_supplier);
+            stok.val(data.stok);
+            ukuran.val(data.ukuran);
+            harga.val(data.harga);
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
+=======
+    $(document).on('change', '#oli_id', function() {
+        let url = '<?= base_url('oli/getstok/'); ?>' + this.value;
+        $.getJSON(url, function(data) {
+            satuan.html(data.nama_satuan);
+            supplier_oli.val(data.nama_supplier);
+            supplier_oli_keluar.val(data.nama_supplier);
+            stok.val(data.stok);
+            ukuran.val(data.ukuran);
+            harga.val(data.harga);
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
+            total.val(data.stok);
+            jumlah_aki.focus();
+        });
+    });
+
+<<<<<<< HEAD
 <<<<<<< HEAD
     $(document).on('change', '#ban_id', function() {
         let url = '<?= base_url('ban/getstok/'); ?>' + this.value;
@@ -324,6 +395,13 @@
         total.val(Number(totalStok));
     });
 
+=======
+    $(document).on('keyup', '#jumlah_masuk', function() {
+        let totalStok = parseInt(stok.val()) + parseInt(this.value);
+        total.val(Number(totalStok));
+    });
+
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
     $(document).on('keyup', '#jumlah_masuk', function() {
         let totalStok = parseInt(stok.val()) + parseInt(this.value);

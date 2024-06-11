@@ -81,6 +81,11 @@ class Oli_model extends CI_Model
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
+
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
 		$this->db->order_by('oli_masuk.id_oli_masuk', 'DESC');
 
@@ -186,6 +191,7 @@ class Oli_model extends CI_Model
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public function cekStok($id)
 	{
 		$this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');
@@ -194,6 +200,8 @@ class Oli_model extends CI_Model
 
 	public function cekStokOli($id_oli_masuk)
 =======
+=======
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 	// public function cekStok($id)
 	// {
 	// 	$this->db->join('supplier', 'oli.supplier_id=supplier.id_supplier');
@@ -201,6 +209,9 @@ class Oli_model extends CI_Model
 	// }
 
 	public function cekStoK($id_oli_masuk)
+<<<<<<< HEAD
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
+=======
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 	{
 		return $this->db->join('oli', 'oli.id_oli = oli_masuk.oli_id', 'left')

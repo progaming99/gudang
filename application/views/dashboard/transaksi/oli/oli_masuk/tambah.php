@@ -38,8 +38,13 @@
                     <div class="col-md-5">
                         <div class="input-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <select name="oli_id" id="oli_id" class="custom-select select2">
                                 <option value="" selected disabled>Pilih Nama</option>
+=======
+                            <select name="oli_id" id="oli_id" class="custom-select">
+                                <option value="" selected disabled>Pilih Oli</option>
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
                             <select name="oli_id" id="oli_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Oli</option>

@@ -96,7 +96,11 @@ class Oli_keluar extends CI_Controller
 				'user_id' => $this->input->post('user_id'),
 				// GA PERLU OLI_ID
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'oli_id' => $this->input->post('id_oli'),
+=======
+				'oli_id' => $this->input->post(''),
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
 				'oli_id' => $this->input->post(''),
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
@@ -114,9 +118,12 @@ class Oli_keluar extends CI_Controller
 				die();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				// $cek_stok = $this->Oli_model->cekStok($this->input->post('id_oli_masuk'));
 				// $update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');
 =======
+=======
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 				$cek_stok = $this->Oli_model->cekStoKkeluar($this->input->post('id_oli_masuk'));
 				$update_stok = $cek_stok->stok - $this->input->post('jumlah_keluar');
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff

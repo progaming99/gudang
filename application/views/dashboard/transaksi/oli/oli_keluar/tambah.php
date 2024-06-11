@@ -98,7 +98,11 @@
                     <div class="col-md-5">
                         <div class="input-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar..." min="1">
+=======
+                            <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
                             <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
@@ -146,8 +150,12 @@
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php
     if ($this->session->flashdata('error')) { ?>
+=======
+    <?php if ($this->session->flashdata('error')) { ?>
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
     <?php if ($this->session->flashdata('error')) { ?>
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
@@ -160,8 +168,12 @@
             timer: 5000,
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php
         unset($_SESSION['error']);
+=======
+    <?php unset($_SESSION['error']);
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
 =======
     <?php unset($_SESSION['error']);
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
@@ -170,6 +182,7 @@
 
 <script>
     $(document).on('change', '#id_oli_masuk', function() {
+<<<<<<< HEAD
 <<<<<<< HEAD
         // Ambil nilai dari atribut data-id
         let selectedOption = $(this).find('option:selected');
@@ -196,6 +209,15 @@
         // Set the hidden input value for id_oli
         $('#id_oli').val(oliId);
 
+=======
+        let selectedOption = $(this).find('option:selected');
+        let value = selectedOption.val();
+        let [idOliMasuk, oliId] = value.split('|');
+
+        // Set the hidden input value for id_oli
+        $('#id_oli').val(oliId);
+
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
         let url = '<?= base_url('oli/getstok/'); ?>' + idOliMasuk;
         $.getJSON(url, function(data) {
             $('#satuan').text(data.nama_satuan);
@@ -203,6 +225,9 @@
             $('#stok').val(data.stok);
             $('#harga').val(data.harga);
             // Additional processing as needed
+<<<<<<< HEAD
+>>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
+=======
 >>>>>>> 19501b7bdbf46f0ffcb17b163a79e32fba198aff
         });
     });
